@@ -5,7 +5,6 @@
   width: 250px; /*no*/ 
   height: 70vh;
   overflow: auto;
-  background-color: bisque;
 }
 
 .ubicaciones-list-item {
@@ -22,7 +21,11 @@
 }
 
 .ubicaciones-list-item:hover {
-  background-color: #e0e0e0;
+  background-color: #e9c8e3;
+}
+
+.selected:hover {
+  background-color: #df90d2;
 }
 
 .ubicacion-list-icon {
