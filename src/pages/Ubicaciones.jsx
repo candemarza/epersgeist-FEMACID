@@ -37,6 +37,11 @@ const Ubicaciones = () => {
       });
    }, []);
 
+   const setSelected = (ubicacion) => {
+        setSelectedUbicacion(ubicacion);
+    };
+
+
    return (
     <div className="getAllContainer">
        <div className="searchContainer">
@@ -55,19 +60,19 @@ const Ubicaciones = () => {
                     <button>Crear nueva ubicacion</button>
                 </>
              ) : (
-                <UbicacionesList ubicaciones={ubicaciones} />
+                <UbicacionesList ubicaciones={ubicaciones} setSelected={setSelected} selected={selectedUbicacion.id} />
              )}
           </div>
           <div className="ubicacionCard">
              {ubicaciones.length === 0 ? (
-                <div className="ubicacionCard-inexistent">
+                <div className="ubicacionCard-404">
                    <p>No hay ubicaciones disponibles</p>
                    <button>Crear nueva ubicacion</button>
                 </div>
              ) : selectedUbicacion ? (
                 <UbicacionCard ubicacion={selectedUbicacion} />
              ) : (
-                <div className="ubicacionCard-inexistent">
+                <div className="ubicacionCard-404">
                    <p>No existe la ubicacion buscada</p>
                    <button>Crear nueva ubicacion</button>
                 </div>

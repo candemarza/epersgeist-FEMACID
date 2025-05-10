@@ -16,6 +16,10 @@
   cursor: pointer;
 }
 
+.selected {
+  background-color: #df90d2;
+}
+
 .ubicaciones-list-item:hover {
   background-color: #e0e0e0;
 }
