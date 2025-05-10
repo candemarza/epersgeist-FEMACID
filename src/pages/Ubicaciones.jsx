@@ -63,7 +63,7 @@ const Ubicaciones = () => {
                 <UbicacionesList ubicaciones={ubicaciones} setSelected={setSelected} selected={selectedUbicacion.id} />
              )}
           </div>
-          <div className="ubicacionCard">
+          <div className="cardContainer">
              {ubicaciones.length === 0 ? (
                 <div className="ubicacionCard-404">
                    <p>No hay ubicaciones disponibles</p>

@@ -7,7 +7,7 @@
    align-items: center;
    box-sizing: border-box;
    margin: 0;
-   padding: 0;
+   padding: 50px;
 }
 
 .searchContainer {
@@ -20,6 +20,10 @@
 }
 .contentContainer {
    display: flex;
+   width: 100%;
+   height: 100%;
+   justify-content: center;
+   gap: 50px;
 }
 
 .listContainer {
@@ -29,7 +33,7 @@
    align-items: center;
 }
 
-.ubicacionCard {
+.cardContainer {
    display: flex;
    justify-content: center;
    flex-direction: column;

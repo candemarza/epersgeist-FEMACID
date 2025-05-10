@@ -1,7 +1,4 @@
 import React from "react";
-import art from "../assets/art.jpeg";
-import { useEffect, useState } from "react";
-import API from "../service/api";
 import { useNavigate } from "react-router-dom";
 
 

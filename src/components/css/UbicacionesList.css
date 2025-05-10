@@ -5,6 +5,7 @@
   width: 250px; /*no*/ 
   height: 70vh;
   overflow: auto;
+  background-color: bisque;
 }
 
 .ubicaciones-list-item {
