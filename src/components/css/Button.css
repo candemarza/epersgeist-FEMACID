@@ -1,0 +1,17 @@
+.epers-button {
+   background-color: #df90d2;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: none;
+   color: white;
+   height: 40px;
+   width: 40px;
+   cursor: pointer;
+   border-radius: 100%;
+   font-size: 25px;
+   margin: 5px;
+}
+.epers-button:hover {
+   background-color: #ce74bf;
+}

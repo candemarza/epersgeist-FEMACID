@@ -1,0 +1,37 @@
+.getAllContainer {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+.searchContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 90%;
+   height: 50px;
+   margin-bottom: 20px;
+}
+.contentContainer {
+   display: flex;
+}
+
+.listContainer {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+}
+
+.ubicacionCard {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+}
