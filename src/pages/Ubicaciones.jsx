@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Ubicaciones = () => {
     const [ubicaciones, setUbicaciones] = useState([]);
-
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         API.getUbicaciones().then((res) => {
@@ -27,6 +26,9 @@ const Ubicaciones = () => {
                     </div>
                 ))}
             </div>
+            <button onClick={() => navigate("/")}>
+                Volver a la página de inicio
+            </button>
         </div>
     );
 }
