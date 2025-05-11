@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 250px; /*no*/ 
-  height: 70vh;
+  height: auto;
   overflow: auto;
+  width: 70%;
 }
 
 .ubicaciones-list-item {
