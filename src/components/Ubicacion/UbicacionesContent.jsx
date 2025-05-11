@@ -34,7 +34,7 @@ const UbicacionNotFound = () => {
    return (
       <div className="ubicacionCard-404">
          <h2 className="ubicacionCard-404-title">No existe la ubicacion buscada :( </h2>
-         <p className="ubicacionCard-404-sugestion">Prueba buscando otra ubicacion</p>
+         <p className="ubicacionCard-404-subtitle">Prueba buscando otra ubicacion</p>
       </div>
    );
 };

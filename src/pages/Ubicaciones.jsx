@@ -65,9 +65,9 @@ const Ubicaciones = () => {
 
    return ubicaciones.length === 0 ? (
       <>
-         <div className="ubicacionCard-404">
-            <h2>No hay ubicaciones disponibles :( </h2>
-            <p>Prueba creando una ubicacion</p>
+         <div className="getAll-noItems">
+            <h2 className="getAll-noItems-title">No hay ubicaciones disponibles :( </h2>
+            <p className="getAll-noItems-subtitle">Prueba creando una ubicacion</p>
             <CreateButton onClick={handleShowCreatePopUp} />
          </div>
          {showPopup && (
