@@ -7,42 +7,51 @@ const UbicacionesContent = ({
    setSelected,
    refreshUbicaciones,
 }) => {
+
+   
    return (
-      <div className="contentContainer">
+      ubicaciones.length === 0 ? (
+         <NoUbicaciones />
+      ) : (
+         <div className="contentContainer">
          <div className="listContainer">
-            {ubicaciones.length === 0 ? (
-               <>
-                  <p>No hay ubicaciones disponibles</p>
-                  <button>Crear nueva ubicacion</button>
-               </>
-            ) : (
-               <UbicacionesList
+            <UbicacionesList
                   ubicaciones={ubicaciones}
                   setSelected={setSelected}
-                  selected={selectedUbicacion.id}
+                  selected={selectedUbicacion?.id}
                />
-            )}
          </div>
          <div className="cardContainer">
-            {ubicaciones.length === 0 ? (
-               <div className="ubicacionCard-404">
-                  <p>No hay ubicaciones disponibles</p>
-                  <button>Crear nueva ubicacion</button>
-               </div>
-            ) : selectedUbicacion ? (
+            {selectedUbicacion ? (
                <UbicacionCard
                   ubicacion={selectedUbicacion}
                   onDelete={refreshUbicaciones}
                />
             ) : (
-               <div className="ubicacionCard-404">
-                  <p>No existe la ubicacion buscada</p>
-                  <button>Crear nueva ubicacion</button>
-               </div>
+               <UbicacionNotFound />
             )}
          </div>
       </div>
+      )
    );
 };
+
+const UbicacionNotFound = () => {
+   return (
+      <div className="ubicacionCard-404">
+         <h2>No existe la ubicacion buscada :( </h2>
+         <p>Prueba buscando otra ubicacion</p>
+      </div>
+   );
+}
+
+const NoUbicaciones = () => {
+   return (
+      <div className="ubicacionCard-noUbicaciones">
+         <h2>No hay ubicaciones disponibles</h2>
+         <p>Prueba creando una nueva ubicacion</p>
+      </div>
+   );
+}
 
 export default UbicacionesContent;

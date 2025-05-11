@@ -1,0 +1,42 @@
+.create-tipo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.create-input-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.tipo-toggle {
+    display: flex;
+    gap: 30px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tipo-option {
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-weight: 400;
+    width: 158px;
+}
+
+.tipo-option.active {
+    background-color: #e26bce;
+    color: white;
+    border: none;
+}
+
+.tipo-option:hover {
+    background-color: #e26bce77;
+}

@@ -54,13 +54,14 @@
     align-items: center;
 }
 
-.popup {
+.popup-create {
     background-color: white;
-    padding: 20px;
+    padding: 20px 50px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 300px;
+    width: 500px;
+    box-sizing: border-box;
 }
 
 .popup-buttons {
@@ -84,4 +85,41 @@
 .popup-button.cancel {
     background-color: #51afcc;
     color: white;
+}
+
+.creat-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.create-inputs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.create-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.create-input-label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.create-input{
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.create-input:focus {
+    outline: none;
+    border-color: #51afcc;
 }

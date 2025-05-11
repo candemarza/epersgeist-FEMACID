@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
+import TipoToggle from "../components/TipoToggle";
 
 const Ubicaciones = () => {
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -120,7 +121,7 @@ const CreatePopUp = ({
 
    return (
       <div className="popup-overlay">
-         <div className="popup">
+         <div className="popup-create">
             <h2 className="create-title">Crear nueva ubicacion</h2>
             <div className="create-inputs">
                <div className="create-input-container">
@@ -128,7 +129,7 @@ const CreatePopUp = ({
                   <input
                      type="text"
                      className="create-input"
-                     placeholder="Nombre de la ubicacion"
+                     placeholder="Nombre de la ubicacion..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
@@ -138,29 +139,19 @@ const CreatePopUp = ({
                   <input
                      type="number"
                      className="create-input"
-                     placeholder="Flujo de energia"
+                     placeholder="Flujo de energia..."
                      value={flujoDeEnergia}
                      onChange={(e) => setFlujoDeEnergia(e.target.value)}
                   />
                </div>
             </div>
-            <div className="create-tipo-container">
-               <p className="create-input-label">Tipo</p>
-               <select
-                  className="create-select"
-                  value={tipo}
-                  onChange={(e) => setTipo(e.target.value)}
-               >
-                  <option value="Cementerio">Cementerio</option>
-                  <option value="Santuario">Santuario</option>
-               </select>
-            </div>
+            <TipoToggle tipo={tipo} setTipo={setTipo} opciones={["Cementerio", "Santuario"]} />
             <div className="popup-buttons">
-               <button className="popup-button confirm" onClick={handleCreate}>
-                  Sí
-               </button>
                <button className="popup-button cancel" onClick={onCancel}>
-                  No
+                  Cancelar
+               </button>
+               <button className="popup-button confirm" onClick={handleCreate}>
+                  Crear
                </button>
             </div>
          </div>
