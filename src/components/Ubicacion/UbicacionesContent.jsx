@@ -7,19 +7,16 @@ const UbicacionesContent = ({
    setSelected,
    refreshUbicaciones,
 }) => {
-
-   
-   return (
-      ubicaciones.length === 0 ? (
-         <NoUbicaciones />
-      ) : (
-         <div className="contentContainer">
+   return ubicaciones.length === 0 ? (
+      <NoUbicaciones />
+   ) : (
+      <div className="contentContainer">
          <div className="listContainer">
             <UbicacionesList
-                  ubicaciones={ubicaciones}
-                  setSelected={setSelected}
-                  selected={selectedUbicacion?.id}
-               />
+               ubicaciones={ubicaciones}
+               setSelected={setSelected}
+               selected={selectedUbicacion?.id}
+            />
          </div>
          <div className="cardContainer">
             {selectedUbicacion ? (
@@ -32,7 +29,6 @@ const UbicacionesContent = ({
             )}
          </div>
       </div>
-      )
    );
 };
 
@@ -43,7 +39,7 @@ const UbicacionNotFound = () => {
          <p>Prueba buscando otra ubicacion</p>
       </div>
    );
-}
+};
 
 const NoUbicaciones = () => {
    return (
@@ -52,6 +48,6 @@ const NoUbicaciones = () => {
          <p>Prueba creando una nueva ubicacion</p>
       </div>
    );
-}
+};
 
 export default UbicacionesContent;
