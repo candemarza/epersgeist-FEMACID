@@ -34,25 +34,6 @@
     box-sizing: border-box;
 }
 
-.Cementerio-top{
-    color:rgb(20, 20, 20)
-}
-
-.Cementerio-bottom{
-    color:rgb(238, 231, 231)
-}
-
-.Santuario-top{
-     /*ver de ponerle una shadow? o buscar otra foto*/
-    color:rgb(20, 20, 20)
-}
-
-.Santuario-bottom{
-     /*same^^*/
-    color:rgb(238, 231, 231)
-}
-
-
 .ubicacionCard-nombre{
     /*buscar font cul*/
     font-size: 55px;
@@ -162,3 +143,76 @@
     background-color: #51afcc;
     color: white;
 }
+
+/*edit*/
+.ubicacionCard-nombre-edit {
+    all: unset;
+    display: block;
+    width: 90%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #54544c4d;
+    border: 2px dashed #d7ddd5; 
+    border-radius: 35px;
+    cursor: text;
+    transition: background-color 0.5s, border-color 0.5s;
+}
+
+.ubicacionCard-nombre-edit:hover {
+    border-color: rgb(148, 147, 147);
+}
+
+.ubicacionCard-nombre-edit:focus {
+    background-color: #ffffff31;
+    border-color: #808485; 
+    outline: none; 
+}
+
+.ubicacionCard-flujo-edit {
+    all: unset;
+    display: block;
+    width: 20%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #54544c4d;
+    border: 2px dashed #d7ddd5; 
+    border-radius: 25px;
+    cursor: text;
+    transition: background-color 0.5s, border-color 0.5s;
+}
+
+.ubicacionCard-flujo-edit:hover {
+    border-color: rgb(148, 147, 147);
+}
+
+.ubicacionCard-flujo-edit:focus {
+    background-color: #ffffff31;
+    border-color: #808485; 
+    outline: none; 
+}
+
+/*colores titulos condicionales*/
+.Cementerio-top{
+    color:rgb(20, 20, 20)
+}
+
+.Cementerio-bottom{
+    color:rgb(238, 231, 231)
+}
+
+.Santuario-top{
+     /*ver de ponerle una shadow? o buscar otra foto*/
+    color:rgb(20, 20, 20)
+}
+
+.Santuario-bottom{
+     /*same^^*/
+    color:rgb(238, 231, 231)
+}
+

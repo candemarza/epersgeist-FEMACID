@@ -1,14 +1,6 @@
-import React from "react";
-import { GiPirateGrave } from "react-icons/gi";
 import { FaChurch } from "react-icons/fa";
-import { TbGrave2 } from "react-icons/tb";
 import { GiHastyGrave } from "react-icons/gi";
-import { MdOutlineChurch } from "react-icons/md";
-import { GiChurch } from "react-icons/gi";
-import { TbBuildingChurch } from "react-icons/tb";
-import { PiChurch } from "react-icons/pi";
-import { TbGrave } from "react-icons/tb";
-import "./css/UbicacionesList.css";
+import "../css/UbicacionesList.css";
 
 const UbicacionesList = ({ ubicaciones, setSelected, selected }) => {
    return (
@@ -33,18 +25,5 @@ const UbicacionesList = ({ ubicaciones, setSelected, selected }) => {
       </div>
    );
 };
-
-{
-   /* <GiPirateGrave />
-<TbGrave2 />
-<GiHastyGrave />
-<TbGrave />
-<p></p>
-<FaChurch />
-<MdOutlineChurch />
-<GiChurch />
-<TbBuildingChurch />
-<PiChurch /> */
-}
 
 export default UbicacionesList;

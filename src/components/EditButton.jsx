@@ -1,4 +1,3 @@
-import React from "react";
 import "./css/Button.css";
 
 import { BiSolidPencil } from "react-icons/bi";

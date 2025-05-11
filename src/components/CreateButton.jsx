@@ -1,4 +1,3 @@
-import React from "react";
 import "./css/Button.css";
 
 import { BiPlus } from "react-icons/bi";
