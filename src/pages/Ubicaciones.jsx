@@ -24,9 +24,11 @@ const Ubicaciones = () => {
          API.getUbicacionById(search)
             .then((res) => {
                setSelectedUbicacion(res.data);
+               setSearch("")
             })
             .catch(() => {
                setSelectedUbicacion(null);
+               setSearch("");
             });
       }
    };
@@ -61,7 +63,23 @@ const Ubicaciones = () => {
       setShowPopup(false);
    };
 
-   return (
+   return ubicaciones.length === 0 ? (
+      <>
+         <div className="ubicacionCard-404">
+            <h2>No hay ubicaciones disponibles :( </h2>
+            <p>Prueba creando una ubicacion</p>
+            <CreateButton onClick={handleShowCreatePopUp} />
+         </div>
+         {showPopup && (
+            <CreatePopUp
+               onCreate={handleCreate}
+               onCancel={() => setShowPopup(false)}
+               setSelected={setSelected}
+               refreshUbicaciones={refreshUbicaciones}
+            />
+         )}
+      </>
+   ) : (
       <>
          <div className="getAllContainer">
             <div className="searchContainer">
@@ -145,7 +163,11 @@ const CreatePopUp = ({
                   />
                </div>
             </div>
-            <TipoToggle tipo={tipo} setTipo={setTipo} opciones={["Cementerio", "Santuario"]} />
+            <TipoToggle
+               tipo={tipo}
+               setTipo={setTipo}
+               opciones={["Cementerio", "Santuario"]}
+            />
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
                   Cancelar

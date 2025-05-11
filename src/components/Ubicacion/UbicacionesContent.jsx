@@ -7,9 +7,7 @@ const UbicacionesContent = ({
    setSelected,
    refreshUbicaciones,
 }) => {
-   return ubicaciones.length === 0 ? (
-      <NoUbicaciones />
-   ) : (
+   return (
       <div className="contentContainer">
          <div className="listContainer">
             <UbicacionesList
@@ -35,19 +33,11 @@ const UbicacionesContent = ({
 const UbicacionNotFound = () => {
    return (
       <div className="ubicacionCard-404">
-         <h2>No existe la ubicacion buscada :( </h2>
-         <p>Prueba buscando otra ubicacion</p>
+         <h2 className="ubicacionCard-404-title">No existe la ubicacion buscada :( </h2>
+         <p className="ubicacionCard-404-sugestion">Prueba buscando otra ubicacion</p>
       </div>
    );
 };
 
-const NoUbicaciones = () => {
-   return (
-      <div className="ubicacionCard-noUbicaciones">
-         <h2>No hay ubicaciones disponibles</h2>
-         <p>Prueba creando una nueva ubicacion</p>
-      </div>
-   );
-};
 
 export default UbicacionesContent;
