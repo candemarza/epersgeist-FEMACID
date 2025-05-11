@@ -146,3 +146,12 @@
     font-weight: 400;
     margin-bottom: 20px;
 }
+
+.goBack {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    position: absolute;
+    top: 0px;
+}

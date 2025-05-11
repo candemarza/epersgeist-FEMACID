@@ -5,6 +5,8 @@ import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
 import TipoToggle from "../components/TipoToggle";
+import { useNavigate } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Ubicaciones = () => {
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -18,13 +20,18 @@ const Ubicaciones = () => {
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
 
+   const navigate = useNavigate();
+   const goHome = () => {
+      navigate(`/`);
+   };
+
    const handleSearch = (e) => {
       e.preventDefault();
       if (search) {
          API.getUbicacionById(search)
             .then((res) => {
                setSelectedUbicacion(res.data);
-               setSearch("")
+               setSearch("");
             })
             .catch(() => {
                setSelectedUbicacion(null);
@@ -65,9 +72,16 @@ const Ubicaciones = () => {
 
    return ubicaciones.length === 0 ? (
       <>
+         <div className="goBack">
+            <IoIosArrowBack onClick={goHome} />
+         </div>
          <div className="getAll-noItems">
-            <h2 className="getAll-noItems-title">No hay ubicaciones disponibles :( </h2>
-            <p className="getAll-noItems-subtitle">Prueba creando una ubicacion</p>
+            <h2 className="getAll-noItems-title">
+               No hay ubicaciones disponibles :({" "}
+            </h2>
+            <p className="getAll-noItems-subtitle">
+               Prueba creando una ubicacion
+            </p>
             <CreateButton onClick={handleShowCreatePopUp} />
          </div>
          {showPopup && (
@@ -81,6 +95,9 @@ const Ubicaciones = () => {
       </>
    ) : (
       <>
+         <div className="goBack">
+            <IoIosArrowBack onClick={goHome} />
+         </div>
          <div className="getAllContainer">
             <div className="searchContainer">
                <SearchBar
