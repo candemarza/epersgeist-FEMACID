@@ -1,4 +1,4 @@
-import API from "../service/api";
+import API from "../service/API";
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
 import CreateButton from "../components/CreateButton";
@@ -41,6 +41,17 @@ const Ubicaciones = () => {
         setSelectedUbicacion(ubicacion);
     };
 
+    const refreshUbicaciones = () => {
+      API.getUbicaciones()
+         .then((res) => {
+            setUbicaciones(res.data);
+            setSelectedUbicacion(res.data[0]); // Selecciona la primera ubicación
+         })
+         .catch((error) => {
+            console.error("Error al cargar las ubicaciones:", error);
+         });
+   };
+
 
    return (
     <div className="getAllContainer">
@@ -70,7 +81,7 @@ const Ubicaciones = () => {
                    <button>Crear nueva ubicacion</button>
                 </div>
              ) : selectedUbicacion ? (
-                <UbicacionCard ubicacion={selectedUbicacion} />
+                <UbicacionCard ubicacion={selectedUbicacion} onDelete={refreshUbicaciones} />
              ) : (
                 <div className="ubicacionCard-404">
                    <p>No existe la ubicacion buscada</p>
