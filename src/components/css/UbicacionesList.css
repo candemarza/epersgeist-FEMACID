@@ -1,10 +1,12 @@
 .ubicaciones-list {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   gap: 8px;
   height: auto;
   overflow: auto;
   width: 70%;
+  padding-left: 10%;
 }
 
 .ubicaciones-list-item {
