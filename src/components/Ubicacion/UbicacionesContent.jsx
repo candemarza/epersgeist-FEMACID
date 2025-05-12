@@ -1,4 +1,4 @@
-import UbicacionesList from "./UbicacionesList";
+import ItemList from "../ItemList";
 import UbicacionCard from "./UbicacionCard";
 
 const UbicacionesContent = ({
@@ -10,8 +10,8 @@ const UbicacionesContent = ({
    return (
       <div className="contentContainer">
          <div className="listContainer">
-            <UbicacionesList
-               ubicaciones={ubicaciones}
+            <ItemList
+               items={ubicaciones}
                setSelected={setSelected}
                selected={selectedUbicacion?.id}
             />
