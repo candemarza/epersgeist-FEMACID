@@ -1,4 +1,4 @@
-import "./css/TipoToggle.css"; // Asegúrate de crear un archivo CSS para los estilos
+import "./css/TipoToggle.css";
 
 const TipoToggle = ({ tipo, setTipo, opciones }) => {
 

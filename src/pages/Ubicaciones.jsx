@@ -1,4 +1,4 @@
-import API from "../service/API";
+import API from "../service/api";
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
 import CreateButton from "../components/CreateButton";

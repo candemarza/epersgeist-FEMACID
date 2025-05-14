@@ -2,7 +2,7 @@ import "../css/Card.css";
 import "../css/MediumCard.css";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
-import API from "../../service/API";
+import API from "../../service/api";
 import mediumImg from "../../assets/medium.png";
 import lolo from "../../assets/lolo.png";
 import olol from "../../assets/olol.png";

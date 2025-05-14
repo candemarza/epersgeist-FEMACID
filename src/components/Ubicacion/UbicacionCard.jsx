@@ -2,7 +2,7 @@ import "../css/Card.css";
 import "../css/UbicacionCard.css";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
-import API from "../../service/API";
+import API from "../../service/api";
 import cementerioImg from "../../assets/cementerio.jpg";
 import santuarioImg from "../../assets/santuario.jpg";
 import { useEffect, useState } from "react";

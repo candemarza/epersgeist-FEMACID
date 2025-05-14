@@ -2,7 +2,7 @@ import "../css/Card.css";
 import "../css/EspirituCard.css";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
-import API from "../../service/API";
+import API from "../../service/api";
 import demoniacoImg from "../../assets/demoniaco.jpg";
 import angelicalImg from "../../assets/angelical.jpg";
 import { useEffect, useState } from "react";

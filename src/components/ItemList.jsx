@@ -2,7 +2,6 @@ import { FaChurch } from "react-icons/fa";
 import { GiHastyGrave } from "react-icons/gi";
 import { GiDevilMask } from "react-icons/gi";
 import { GiAngelOutfit } from "react-icons/gi";
-import { GiEvilWings } from "react-icons/gi";
 import { GiSunPriest } from "react-icons/gi";
 import "./css/ItemList.css";
 
