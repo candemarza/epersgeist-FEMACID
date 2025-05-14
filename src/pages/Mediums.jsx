@@ -51,9 +51,9 @@ const Mediums = () => {
    };
 
    const refreshMediums = (selectedMedium = null) => {
-      API.getUbicaciones()
+      API.getMediums()
          .then((res) => {
-            setMedium(res.data);
+            setMediums(res.data);
             setSelectedMedium(selectedMedium || res.data[0]);
          })
          .catch((error) => {

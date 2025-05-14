@@ -57,6 +57,12 @@
     margin: 0;
 }
 
+.card-energia-max {
+    font-size: 26px;
+    font-weight: 500; 
+    margin: 0;
+}
+
 .card-energia-porcentaje {
     font-size: 26px;
     font-weight: 500; 
