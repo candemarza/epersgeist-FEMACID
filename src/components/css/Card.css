@@ -1,0 +1,224 @@
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    max-width: 488px;
+}
+
+.card-buttonContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.card-nombre{
+    /*buscar font cul*/
+    font-size: 55px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin: 0;
+}
+
+.card-bottomContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    gap: 25px;
+}
+
+.card-id{
+    font-size: 26px;
+    font-weight: 500; 
+    margin: 0;
+}
+
+.card-energia-porcentaje {
+    font-size: 26px;
+    font-weight: 500; 
+    margin: 0;
+    white-space: nowrap;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #df90d2;
+    border-radius: 10px 0 0 10px;
+ }
+
+.card-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-energia-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+/*delete*/
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.popup-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup-button.confirm {
+    background-color: #e26bce;
+    color: white;
+}
+
+.popup-button.cancel {
+    background-color: #51afcc;
+    color: white;
+}
+
+/*edit*/
+.card-nombre-edit {
+    all: unset;
+    display: block;
+    width: 80%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #b09fbb2f;
+    border: 2px dashed #d7ddd5; 
+    border-radius: 35px;
+    cursor: text;
+    transition: background-color 0.5s, border-color 0.5s;
+}
+
+.Cementerio-edit{
+    border-color: #4b4c4d;
+}
+
+.card-nombre-edit:hover {
+    border-color: #4b4c4d;
+}
+
+.card-nombre-edit:focus {
+    background-color: #59476434;
+    border-color: #4b4c4d; 
+    outline: none; 
+}
+
+.card-energia-edit {
+    all: unset;
+    display: block;
+    width: 20%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #54544c4d;
+    border: 2px dashed #d7ddd5; 
+    border-radius: 25px;
+    cursor: text;
+    transition: background-color 0.5s, border-color 0.5s;
+}
+
+.card-energia-edit:hover {
+    border-color: rgb(148, 147, 147);
+}
+
+.card-energia-edit:focus {
+    background-color: #ffffff31;
+    border-color: #808485; 
+    outline: none; 
+}
+
+.card-404{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 488px;
+    border: #80848523 1px solid;
+}
+
+.card-404-title{
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.card-404-subtitle{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
