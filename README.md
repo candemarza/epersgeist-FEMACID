@@ -1,28 +1,17 @@
-## Requisito
-Tener instalado [Node.js](https://nodejs.org/en) en la maquina local.
+Instalen [Node.js](https://nodejs.org/en) 
 
-## Instalacion
-### 🌸 Clonar el reposiotirio usando el comando:
+Para que funcione tienen que agregar en los controllers
 ```bash
-git clone https://github.com/candemarza/epersgeist-FEMACID.git
+@CrossOrigin(origins = "http://localhost:5173")
 ```
-### 🌸  Navega al directorio del proyecto usando el comando:
-```bash
-cd unq-ui-candela-marzaroli-trabajo-final
-```
-### 🌸  Instalar dependencias usando el comando:
+(o el puerto que se levante react, x default es ese pero puede fallar)
+
+en la consola desde el repo hacen un
 ```bash
 npm install
 ```
-
-## Comenzar
-### 🌼  Correr usando el comando:
+y dsps un
 ```bash
 npm run dev
 ```
-### 🌼 [Listo!](http://localhost:5173/)
-El juego estara disponible en el puerto 5173, si ese pueto esta en uso se levantara en otro puerto disponible
-
-
-Para que funcione tienen que agregar en los controllers @CrossOrigin(origins = "http://localhost:5173")
-(o el puerto que se levante react, x default es esa pero puede fallar)
+listo :)
