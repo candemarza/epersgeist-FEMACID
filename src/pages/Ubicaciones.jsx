@@ -135,11 +135,31 @@ const CreatePopUp = ({
    const [nombre, setNombre] = useState("");
    const [flujoDeEnergia, setFlujoDeEnergia] = useState("");
    const [tipo, setTipo] = useState("Cementerio");
+   const [error, setError] = useState("");
 
-   const handleCreate = () => {
+   const handleCreate = async () => {
+      if (!nombre.trim() || flujoDeEnergia === "") {
+         setError("Por favor complete todos los campos.");
+         return;
+      }
+
+      const flujoNum = Number(flujoDeEnergia);
+      if (isNaN(flujoNum)) {
+         setError("Pedazo de hdp, el flujo de energía debe ser un número.");
+         return;
+      }
+      if (flujoNum < 0) {
+         setError("El flujo de energía no puede ser negativo.");
+         return;
+      }
+      if (flujoNum > 100) {
+         setError("El flujo de energía no puede ser mayor a 100.");
+         return;
+      }
+
       const ubicacionBodyDTO = {
          nombre,
-         flujoDeEnergia,
+         flujoDeEnergia: flujoNum,
          tipo,
       };
 
@@ -149,8 +169,8 @@ const CreatePopUp = ({
             refreshUbicaciones(res.data);
             setSelected(res.data);
          })
-         .catch((error) => {
-            console.error("Error al crear la ubicación:", error);
+         .catch(() => {
+            setError("El nombre de la ubicacion ya esta en uso!");
          });
    };
 
@@ -185,6 +205,7 @@ const CreatePopUp = ({
                setTipo={setTipo}
                opciones={["Cementerio", "Santuario"]}
             />
+            {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
                   Cancelar

@@ -1,9 +1,10 @@
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useState } from "react";
-import API from "../service/api" 
+import API from "../service/api";
 import { useNavigate } from "react-router-dom";
 import EspiritusContent from "../components/Espiritus/EspiritusContent";
+import TipoToggle from "../components/TipoToggle";
 import { IoIosArrowBack } from "react-icons/io";
 
 const Espiritus = () => {
@@ -27,7 +28,7 @@ const Espiritus = () => {
    const handleSearch = (e) => {
       e.preventDefault();
       if (search) {
-         API.getUbicacionById(search)
+         API.getEspirituById(search)
             .then((res) => {
                setSelectedEspiritu(res.data);
                setSearch("");
@@ -50,10 +51,10 @@ const Espiritus = () => {
       setSelectedEspiritu(espiritu);
    };
 
-   const refreshEspiritus = ( selectedEspiritu = null) => {
-      API.getUbicaciones()
+   const refreshEspiritus = (selectedEspiritu = null) => {
+      API.getEspiritus()
          .then((res) => {
-            setEspiritu(res.data);
+            setEspiritus(res.data);
             setSelectedEspiritu(selectedEspiritu || res.data[0]);
          })
          .catch((error) => {
@@ -125,65 +126,80 @@ const Espiritus = () => {
    );
 };
 
-const CreatePopUp = ({
-   onCreate,
-   onCancel,
-   refreshUbicaciones,
-   setSelected,
-}) => {
+const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
    const [nombre, setNombre] = useState("");
-   const [flujoDeEnergia, setFlujoDeEnergia] = useState("");
-   const [tipo, setTipo] = useState("Cementerio");
+   const [ubicacionID, setUbicacionID] = useState("");
+   const [tipo, setTipo] = useState("Demoniaco");
+   const [error, setError] = useState("");
+
+   const [ubicaciones, setUbicaciones] = useState([]);
+
+   useEffect(() => {
+      API.getUbicaciones().then((res) => {
+         setUbicaciones(res.data);
+      });
+   }, []);
 
    const handleCreate = () => {
-      const ubicacionBodyDTO = {
+      if (!nombre.trim() || ubicacionID === "") {
+         setError("Por favor complete todos los campos.");
+         return;
+      }
+
+      const espirituBodyDTO = {
          nombre,
-         flujoDeEnergia,
+         ubicacionID,
          tipo,
       };
 
-      API.createUbicacion(ubicacionBodyDTO)
+      API.createEspiritu(espirituBodyDTO)
          .then((res) => {
             onCreate();
-            refreshUbicaciones(res.data);
+            refreshEspiritus(res.data);
             setSelected(res.data);
          })
-         .catch((error) => {
-            console.error("Error al crear la ubicación:", error);
+         .catch(() => {
+            setError("malio sal");
          });
    };
 
    return (
       <div className="popup-overlay">
          <div className="popup-create">
-            <h2 className="create-title">Crear nueva ubicacion</h2>
+            <h2 className="create-title">Crear nuevo espiritu</h2>
             <div className="create-inputs">
                <div className="create-input-container">
                   <p className="create-input-label">Nombre</p>
                   <input
                      type="text"
                      className="create-input"
-                     placeholder="Nombre de la ubicacion..."
+                     placeholder="Nombre del espiritu..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
                </div>
                <div className="create-input-container">
-                  <p className="create-input-label">Flujo de energía</p>
-                  <input
-                     type="number"
+                  <p className="create-input-label">Ubicación</p>
+                  <select
                      className="create-input"
-                     placeholder="Flujo de energia..."
-                     value={flujoDeEnergia}
-                     onChange={(e) => setFlujoDeEnergia(e.target.value)}
-                  />
+                     value={ubicacionID}
+                     onChange={(e) => setUbicacionID(e.target.value)}
+                  >
+                     <option value="">Selecciona una ubicación...</option>
+                     {ubicaciones.map((ubicacion) => (
+                        <option key={ubicacion.id} value={ubicacion.id}>
+                           {ubicacion.nombre}
+                        </option>
+                     ))}
+                  </select>
                </div>
             </div>
             <TipoToggle
                tipo={tipo}
                setTipo={setTipo}
-               opciones={["Cementerio", "Santuario"]}
+               opciones={["Demoniaco", "Angelical"]}
             />
+            {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
                   Cancelar

@@ -1,3 +1,4 @@
+import "../css/Card.css";
 import "../css/UbicacionCard.css";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
@@ -6,7 +7,7 @@ import cementerioImg from "../../assets/cementerio.jpg";
 import santuarioImg from "../../assets/santuario.jpg";
 import { useEffect, useState } from "react";
 
-const UbicacionCard = ({ ubicacion, onDelete }) => {
+const UbicacionCard = ({ ubicacion, onDelete, onUpdate }) => {
    const [showPopup, setShowPopup] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
    const [ubicacionData, setUbicacionData] = useState(ubicacion);
@@ -27,6 +28,7 @@ const UbicacionCard = ({ ubicacion, onDelete }) => {
    };
 
    const handleSave = (updatedUbicacion) => {
+      onUpdate();
       setUbicacionData(updatedUbicacion);
       setIsEditing(false);
    };
@@ -39,38 +41,38 @@ const UbicacionCard = ({ ubicacion, onDelete }) => {
       />
    ) : (
       <div
-         className="ubicacionCard"
+         className="card"
          style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-         <div className="ubicacionCard-buttonContainer">
+         <div className="card-buttonContainer">
             <EditButton onClick={() => setIsEditing(true)} />
             <DeleteButton onClick={() => setShowPopup(true)} />
          </div>
-         <div className="ubicacionCard-content">
-            <h2 className={`ubicacionCard-nombre ${ubicacionData.tipo}-top`}>
+         <div className="card-content">
+            <h2 className={`card-nombre ${ubicacionData.tipo}-top`}>
                {ubicacionData.nombre}
             </h2>
-            <div className="ubicacionCard-bottomContainer">
+            <div className="card-bottomContainer">
                <div
-                  className={`ubicacionCard-info ${ubicacionData.tipo}-bottom`}
+                  className={`card-info ${ubicacionData.tipo}-bottom`}
                >
-                  <h3 className="ubicacionCard-id">ID: {ubicacionData.id}</h3>
-                  <div className="ubicacionCard-flujo-container">
-                     <h2 className="ubicacionCard-flujo">Flujo de Energia:</h2>
+                  <h3 className="card-id">ID: {ubicacionData.id}</h3>
+                  <div className="card-energia-container">
+                     <h2 className="card-energia">Flujo de Energia:</h2>
                      <div className="progress-bar">
                         <div
                            className="progress-bar-fill"
                            style={{ width: `${ubicacionData.flujoDeEnergia}%` }}
                         ></div>
                      </div>
-                     <p className="ubicacionCard-flujo-porcentaje">
+                     <p className="card-energia-porcentaje">
                         {ubicacionData.flujoDeEnergia}%
                      </p>
                   </div>
                </div>
                <div className="ubicacion-buttonContainer">
-                  <button className="ubicacionCard-button">Espiritus</button>
-                  <button className="ubicacionCard-button">
+                  <button className="card-button">Espiritus</button>
+                  <button className="card-button">
                      MediumsSinEspiritus
                   </button>
                </div>
@@ -112,26 +114,26 @@ const EditCard = ({ ubicacion, onSave, onCancel }) => {
 
    return (
       <div
-         className="ubicacionCard"
+         className="card"
          style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-         <div className="ubicacionCard-buttonContainer">
+         <div className="card-buttonContainer">
             <div style={{ height: "50px", width: "50px" }} />
          </div>
-         <div className="ubicacionCard-content">
+         <div className="card-content">
             <input
                type="text"
-               className={`ubicacionCard-nombre-edit ${ubicacion.tipo}-top`}
+               className={`card-nombre-edit ${ubicacion.tipo}-top ${ubicacion.tipo}-edit`}
                value={editedNombre}
                onChange={(e) => setEditedNombre(e.target.value)}
             />
-            <div className="ubicacionCard-bottomContainer">
-               <div className={`ubicacionCard-info ${ubicacion.tipo}-bottom`}>
-                  <h3 className="ubicacionCard-id">ID: {ubicacion.id}</h3>
-                  <div className="ubicacionCard-flujo-container">
-                     <h2 className="ubicacionCard-flujo">Flujo de Energia:</h2>
+            <div className="card-bottomContainer">
+               <div className={`card-info ${ubicacion.tipo}-bottom`}>
+                  <h3 className="card-id">ID: {ubicacion.id}</h3>
+                  <div className="card-energia-container">
+                     <h2 className="card-energia">Flujo de Energia:</h2>
                      <input
-                        className={`ubicacionCard-flujo-edit ${ubicacion.tipo}-bottom`}
+                        className={`card-energia-edit ${ubicacion.tipo}-bottom`}
                         value={editedFlujoDeEnergia}
                         onChange={(e) =>
                            setEditedFlujoDeEnergia(e.target.value)
@@ -141,11 +143,11 @@ const EditCard = ({ ubicacion, onSave, onCancel }) => {
                </div>
             </div>
             <div className="ubicacion-buttonContainer">
-               <button className="ubicacionCard-button" onClick={onCancel}>
+               <button className="card-button" onClick={onCancel}>
                   Descartar
                </button>
                <button
-                  className="ubicacionCard-button"
+                  className="card-button"
                   onClick={handleSaveChanges}
                >
                   Guardar

@@ -21,6 +21,7 @@ const UbicacionesContent = ({
                <UbicacionCard
                   ubicacion={selectedUbicacion}
                   onDelete={refreshUbicaciones}
+                  onUpdate={refreshUbicaciones}
                />
             ) : (
                <UbicacionNotFound />

@@ -1,3 +1,4 @@
+import "../css/Card.css";
 import "../css/EspirituCard.css";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
@@ -6,7 +7,7 @@ import demoniacoImg from "../../assets/demoniaco.jpg";
 import angelicalImg from "../../assets/angelical.jpg";
 import { useEffect, useState } from "react";
 
-const EspirituCard = ({ espiritu, onDelete }) => {
+const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
    const [showPopup, setShowPopup] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
    const [espirituData, setEspirituData] = useState(espiritu);
@@ -27,6 +28,7 @@ const EspirituCard = ({ espiritu, onDelete }) => {
    };
 
    const handleSave = (updatedEspiritu) => {
+      onUpdate();
       setEspirituData(updatedEspiritu);
       setIsEditing(false);
    };
@@ -39,30 +41,30 @@ const EspirituCard = ({ espiritu, onDelete }) => {
       />
    ) : (
       <div
-         className="espirituCard"
+         className="card"
          style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-         <div className="espirituCard-buttonContainer">
+         <div className="card-buttonContainer">
             <EditButton onClick={() => setIsEditing(true)} />
             <DeleteButton onClick={() => setShowPopup(true)} />
          </div>
-         <div className="espirituCard-content">
-            <h2 className={`espirituCard-nombre ${espirituData.tipo}-top`}>
+         <div className="card-content">
+            <h2 className={`card-nombre ${espirituData.tipo}-top`}>
                {espirituData.nombre}
             </h2>
-            <div className="espirituCard-bottomContainer">
-               <div className={`espirituCard-info ${espirituData.tipo}-bottom`}>
-                  <h3 className="espirituCard-id">ID: {espirituData.id}</h3>
-                  <h3 className="espirituCard-id">
+            <div className="card-bottomContainer">
+               <div className={`card-info ${espirituData.tipo}-bottom`}>
+                  <h3 className="card-id">ID: {espirituData.id}</h3>
+                  <h3 className="card-id">
                      Ubicacion: {espirituData.ubicacion.nombre}
                   </h3>
                   {espirituData.mediumId && (
                      <>
-                        <h3 className="espirituCard-id">
+                        <h3 className="card-id">
                            Medium: {espirituData.mediumId}
                         </h3>
-                        <div className="espirituCard-conexion-container">
-                           <h2 className="espirituCard-conexion">
+                        <div className="card-energia-container">
+                           <h2 className="card-energia">
                               Nivel de conexion:
                            </h2>
                            <div className="progress-bar">
@@ -73,7 +75,7 @@ const EspirituCard = ({ espiritu, onDelete }) => {
                                  }}
                               ></div>
                            </div>
-                           <p className="espirituCard-conexion-porcentaje">
+                           <p className="card-energia-porcentaje">
                               {espirituData.nivelDeConexion}%
                            </p>
                         </div>
@@ -81,7 +83,7 @@ const EspirituCard = ({ espiritu, onDelete }) => {
                   )}
                   {!espirituData.mediumId && (
                      <div className="espiritu-buttonContainer">
-                        <button className="espirituCard-button">
+                        <button className="card-button">
                            Conectar A
                         </button>
                      </div>
@@ -121,32 +123,32 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
 
    return (
       <div
-         className="espirituCard"
+         className="card"
          style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-         <div className="espirituCard-buttonContainer">
+         <div className="card-buttonContainer">
             <div style={{ height: "50px", width: "50px" }} />
          </div>
-         <div className="espirituCard-content">
+         <div className="card-content">
             <input
                type="text"
-               className={`espirituCard-nombre-edit ${espiritu.tipo}-top`}
+               className={`card-nombre-edit ${espiritu.tipo}-top`}
                value={editedNombre}
                onChange={(e) => setEditedNombre(e.target.value)}
             />
-            <div className="espirituCard-bottomContainer">
-               <div className={`espirituCard-info ${espiritu.tipo}-bottom`}>
-                  <h3 className="espirituCard-id">ID: {espiritu.id}</h3>
-                  <h3 className="espirituCard-id">
+            <div className="card-bottomContainer">
+               <div className={`card-info ${espiritu.tipo}-bottom`}>
+                  <h3 className="card-id">ID: {espiritu.id}</h3>
+                  <h3 className="card-id">
                      Ubicacion: {espiritu.ubicacion.nombre}
                   </h3>
                   {espiritu.mediumId && (
                      <>
-                        <h3 className="espirituCard-id">
+                        <h3 className="card-id">
                            Medium: {espiritu.mediumId}
                         </h3>
-                        <div className="espirituCard-conexion-container">
-                           <h2 className="espirituCard-conexion">
+                        <div className="card-energia-container">
+                           <h2 className="card-energia">
                               Nivel de conexion:
                            </h2>
                            <div className="progress-bar">
@@ -157,7 +159,7 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
                                  }}
                               ></div>
                            </div>
-                           <p className="espirituCard-conexion-porcentaje">
+                           <p className="card-energia-porcentaje">
                               {espiritu.nivelDeConexion}%
                            </p>
                         </div>

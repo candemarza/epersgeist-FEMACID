@@ -21,6 +21,7 @@ const EspiritusContent = ({
                <EspirituCard
                   espiritu={selectedEspiritu}
                   onDelete={refreshEspiritus}
+                  onUpdate={refreshEspiritus}
                />
             ) : (
                <EspirituNotFound />
