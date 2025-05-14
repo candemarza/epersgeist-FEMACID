@@ -27,7 +27,7 @@ const Mediums = () => {
    const handleSearch = (e) => {
       e.preventDefault();
       if (search) {
-         API.getUbicacionById(search)
+         API.getMediumById(search)
             .then((res) => {
                setSelectedMedium(res.data);
                setSearch("");
@@ -123,65 +123,116 @@ const Mediums = () => {
    );
 };
 
-const CreatePopUp = ({
-   onCreate,
-   onCancel,
-   refreshUbicaciones,
-   setSelected,
-}) => {
+const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
    const [nombre, setNombre] = useState("");
-   const [flujoDeEnergia, setFlujoDeEnergia] = useState("");
-   const [tipo, setTipo] = useState("Cementerio");
+   const [ubicacionID, setUbicacionID] = useState("");
+   const [mana, setMana] = useState("");
+   const [manaMax, setManaMax] = useState("");
+   const [error, setError] = useState("");
+
+   const [ubicaciones, setUbicaciones] = useState([]);
+
+   useEffect(() => {
+      API.getUbicaciones().then((res) => {
+         setUbicaciones(res.data);
+      });
+   }, []);
 
    const handleCreate = () => {
-      const ubicacionBodyDTO = {
+      if (!nombre.trim() || ubicacionID === "" || !mana || !manaMax) {
+         setError("Por favor complete todos los campos.");
+         return;
+      }
+      if (isNaN(mana) || isNaN(manaMax)) {
+         setError("Pedazo de hdp, Mana y Mana Max deben ser números.");
+         return;
+      }
+      if (Number(mana) > Number(manaMax)) {
+         setError("Mana no puede ser mayor que Mana Max.");
+         return;
+      }
+
+      if (Number(manaMax) < 0) {
+         setError("ManaMax no puede ser negativo.");
+         return;
+      }
+      if (Number(mana) < 0) {
+         setError("Mana no puede ser negativo.");
+         return;
+      }
+
+      const mediumBodyDTO = {
          nombre,
-         flujoDeEnergia,
-         tipo,
+         mana,
+         manaMax,
+         ubicacionID,
       };
 
-      API.createUbicacion(ubicacionBodyDTO)
+      API.createMedium(mediumBodyDTO)
          .then((res) => {
             onCreate();
-            refreshUbicaciones(res.data);
+            refreshMediums(res.data);
             setSelected(res.data);
          })
          .catch((error) => {
-            console.error("Error al crear la ubicación:", error);
+            console.error("Error al crear el medium:", error);
          });
    };
 
    return (
       <div className="popup-overlay">
          <div className="popup-create">
-            <h2 className="create-title">Crear nueva ubicacion</h2>
+            <h2 className="create-title">Crear nuevo medium</h2>
             <div className="create-inputs">
                <div className="create-input-container">
                   <p className="create-input-label">Nombre</p>
                   <input
                      type="text"
                      className="create-input"
-                     placeholder="Nombre de la ubicacion..."
+                     placeholder="Nombre del medium..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
                </div>
                <div className="create-input-container">
-                  <p className="create-input-label">Flujo de energía</p>
-                  <input
-                     type="number"
+                  <p className="create-input-label">Ubicación</p>
+                  <select
                      className="create-input"
-                     placeholder="Flujo de energia..."
-                     value={flujoDeEnergia}
-                     onChange={(e) => setFlujoDeEnergia(e.target.value)}
+                     value={ubicacionID}
+                     onChange={(e) => setUbicacionID(e.target.value)}
+                  >
+                     <option value="">Selecciona una ubicación...</option>
+                     {ubicaciones.map((ubicacion) => (
+                        <option key={ubicacion.id} value={ubicacion.id}>
+                           {ubicacion.nombre}
+                        </option>
+                     ))}
+                  </select>
+               </div>
+            </div>
+            <div className="create-inputs">
+               <div className="create-input-container">
+                  <p className="create-input-label">Mana Max</p>
+                  <input
+                     type="text"
+                     className="create-input"
+                     placeholder="Mana Maximo del medium..."
+                     value={manaMax}
+                     onChange={(e) => setManaMax(e.target.value)}
+                  />
+               </div>
+               <div className="create-input-container">
+                  <p className="create-input-label">Mana</p>
+                  <input
+                     type="text"
+                     className="create-input"
+                     placeholder="Mana del medium..."
+                     value={mana}
+                     onChange={(e) => setMana(e.target.value)}
                   />
                </div>
             </div>
-            <TipoToggle
-               tipo={tipo}
-               setTipo={setTipo}
-               opciones={["Cementerio", "Santuario"]}
-            />
+            {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
                   Cancelar
