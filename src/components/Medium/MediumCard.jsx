@@ -111,8 +111,27 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
 const EditCard = ({ medium, onSave, onCancel }) => {
    const [editedNombre, setEditedNombre] = useState(medium.nombre);
    const [editedManaMax, setEditedManaMax] = useState(medium.manaMax);
+   const [error, setError] = useState("");
 
    const handleSaveChanges = () => {
+
+      if (editedManaMax < 0) {
+         setError("El mana maximo no puede ser menor a 0");
+         return;
+      }
+      if (editedManaMax === "") {
+         setError("El mana maximo no puede estar vacio");
+         return;
+      }
+      if (editedManaMax < medium.mana) {
+         setError("El mana maximo no puede ser menor al mana actual");
+         return;
+      }
+      if (!editedNombre.trim()) {
+         setError("El nombre no puede estar vacio");
+         return;
+      }
+
       const updateBodyDTO = {
          nombre: editedNombre,
          manaMax: editedManaMax,
@@ -122,8 +141,8 @@ const EditCard = ({ medium, onSave, onCancel }) => {
          .then(() => {
             onSave({ ...medium, ...updateBodyDTO });
          })
-         .catch((error) => {
-            console.error("Error al actualizar medium:", error);
+         .catch(() => {
+             setError("Algo malio sal");
          });
    };
 
@@ -174,12 +193,13 @@ const EditCard = ({ medium, onSave, onCancel }) => {
                   />
                   </div>
                </div>
+               {error && <div className="error">{error}</div>}
                <div className="medium-buttonContainer">
                   <button
                      className="card-button"
                      onClick={handleSaveChanges}
                   >
-                     Guardar Cambios
+                     Guardar cambios
                   </button>
                   <button className="card-button" onClick={onCancel}>
                      Cancelar

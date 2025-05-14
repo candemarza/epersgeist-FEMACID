@@ -55,9 +55,6 @@ const Mediums = () => {
          .then((res) => {
             setMediums(res.data);
             setSelectedMedium(selectedMedium || res.data[0]);
-         })
-         .catch((error) => {
-            console.error("Error al cargar los Mediums:", error);
          });
    };
 
@@ -139,7 +136,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
    }, []);
 
    const handleCreate = () => {
-      if (!nombre.trim() || ubicacionID === "" || !mana || !manaMax) {
+      if (!nombre.trim() || !ubicacionID || !mana || !manaMax) {
          setError("Por favor complete todos los campos.");
          return;
       }
@@ -174,8 +171,8 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
             refreshMediums(res.data);
             setSelected(res.data);
          })
-         .catch((error) => {
-            console.error("Error al crear el medium:", error);
+         .catch(() => {
+             setError("Algo malio sal");
          });
    };
 

@@ -93,8 +93,25 @@ const EditCard = ({ ubicacion, onSave, onCancel }) => {
    const [editedFlujoDeEnergia, setEditedFlujoDeEnergia] = useState(
       ubicacion.flujoDeEnergia
    );
+   const [error, setError] = useState("");
 
    const handleSaveChanges = () => {
+      if (!editedFlujoDeEnergia) {
+         setError("El flujo de energia no puede estar vacio");
+         return;
+      }
+      if (editedFlujoDeEnergia < 0 ) {
+         setError("El flujo de energia no puede ser negativo");
+         return;
+      }
+      if (editedFlujoDeEnergia > 100) {
+         setError("El flujo de energia no puede ser mayor a 100");
+         return;
+      }
+      if (!editedNombre.trim()) {
+         setError("El nombre no puede estar vacio");
+         return;
+      }
       const updateBodyDTO = {
          nombre: editedNombre,
          flujoDeEnergia: editedFlujoDeEnergia,
@@ -104,8 +121,8 @@ const EditCard = ({ ubicacion, onSave, onCancel }) => {
          .then(() => {
             onSave({ ...ubicacion, ...updateBodyDTO });
          })
-         .catch((error) => {
-            console.error("Error al actualizar la ubicación:", error);
+         .catch(() => {
+            setError("El nombre de la ubicacion ya existe");
          });
    };
 
@@ -142,6 +159,7 @@ const EditCard = ({ ubicacion, onSave, onCancel }) => {
                   </div>
                </div>
             </div>
+            {error && <div className="error">{error}</div>}
             <div className="ubicacion-buttonContainer">
                <button className="card-button" onClick={onCancel}>
                   Descartar

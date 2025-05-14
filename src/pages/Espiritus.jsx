@@ -56,9 +56,6 @@ const Espiritus = () => {
          .then((res) => {
             setEspiritus(res.data);
             setSelectedEspiritu(selectedEspiritu || res.data[0]);
-         })
-         .catch((error) => {
-            console.error("Error al cargar los Espiritus:", error);
          });
    };
 
@@ -141,7 +138,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
    }, []);
 
    const handleCreate = () => {
-      if (!nombre.trim() || ubicacionID === "") {
+      if (!nombre.trim() || !ubicacionID) {
          setError("Por favor complete todos los campos.");
          return;
       }

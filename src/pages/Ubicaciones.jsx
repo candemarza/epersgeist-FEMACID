@@ -56,9 +56,6 @@ const Ubicaciones = () => {
          .then((res) => {
             setUbicaciones(res.data);
             setSelectedUbicacion(ubicacionSeleccionada || res.data[0]);
-         })
-         .catch((error) => {
-            console.error("Error al cargar las ubicaciones:", error);
          });
    };
 
@@ -138,7 +135,7 @@ const CreatePopUp = ({
    const [error, setError] = useState("");
 
    const handleCreate = async () => {
-      if (!nombre.trim() || flujoDeEnergia === "") {
+      if (!nombre.trim() || !flujoDeEnergia) {
          setError("Por favor complete todos los campos.");
          return;
       }

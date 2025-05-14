@@ -103,8 +103,16 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
 
 const EditCard = ({ espiritu, onSave, onCancel }) => {
    const [editedNombre, setEditedNombre] = useState(espiritu.nombre);
+   const [error, setError] = useState("");
+
+   
 
    const handleSaveChanges = () => {
+      if (!editedNombre.trim()) {
+         setError("El nombre no puede estar vacío");  
+         return;
+      }
+
       const updateBodyDTO = {
          nombre: editedNombre
       };
@@ -113,8 +121,8 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
          .then(() => {
             onSave({ ...espiritu, ...updateBodyDTO });
          })
-         .catch((error) => {
-            console.error("Error al actualizar espiritu:", error);
+         .catch(() => {
+             setError("Algo malio sal");
          });
    };
 
@@ -167,6 +175,7 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
                   )}
                </div>
             </div>
+            {error && <div className="error">{error}</div>}
             <div className="ubicacion-buttonContainer">
                <button className="ubicacionCard-button" onClick={onCancel}>
                   Descartar
