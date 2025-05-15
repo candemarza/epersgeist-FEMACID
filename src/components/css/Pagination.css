@@ -1,0 +1,18 @@
+.paginator {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .paginator-arrow {
+    cursor: pointer;
+  }
+  
+  .paginator-arrow-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .paginator-pages {
+    margin: 0 10px;
+  }
