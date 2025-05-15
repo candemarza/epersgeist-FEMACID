@@ -18,7 +18,7 @@ const updateEspiritu = (id, body) => axios.put(`${server}espiritu/${id}`, body)
 const deleteEspiritu = (id) => axios.delete(`${server}espiritu/${id}`)
 const getEspiritus = () => axios.get(`${server}espiritu`)
 const conectarEspiritu = (idEspiritu, idMedium) => axios.put(`${server}espiritu/${idEspiritu}/conectar/${idMedium}`)
-const espiritusDemoniacos = (page) => axios.get(`${server}espiritu/espiritusDemoniacos?dir=asc&page=${page}&pageSize=4`)
+const espiritusDemoniacos = (page) => axios.get(`${server}espiritu/espiritusDemoniacos?dir=asc&page=${page}&pageSize=6`)
 
 // medium
 const getMediumById = (id) => axios.get(`${server}medium/${id}`)

@@ -1,4 +1,5 @@
-import DemonCard from './DemonCard';    
+import DemonCard from './DemonCard'; 
+import "../css/DemoniosContainer.css";   
 
 const DemoniosContainer = ({ demonios }) => {
    return (

@@ -10,6 +10,8 @@ import decidueye from '../../assets/DEMONS/decidueye.png';
 import deogen from '../../assets/DEMONS/deogen.png';
 import dreepy from '../../assets/DEMONS/dreepy.png';
 import duskull from '../../assets/DEMONS/duskull.png';
+import elon from '../../assets/DEMONS/elon.jpg';
+import ghastly from '../../assets/DEMONS/ghastly.png';
 import gengar from '../../assets/DEMONS/gengar.png';
 import git from '../../assets/DEMONS/git.png';
 import jellicent from '../../assets/DEMONS/jellicent.png';
@@ -35,6 +37,8 @@ const demonioImgs ={
     deogen,
     dreepy,
     duskull,
+    elon,
+    ghastly,
     gengar,
     git,
     jellicent,

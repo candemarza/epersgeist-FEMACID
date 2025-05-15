@@ -3,6 +3,7 @@ import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 
 const Pagination = ({ currentPage, amountOfPages, onPageChange }) => {
+
    return (
       <div className="paginator">
          <PastPage currentPage={currentPage} onPageChange={onPageChange} />

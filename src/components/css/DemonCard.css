@@ -1,4 +1,53 @@
+.demon-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    height: 280px;
+    background-color: #b62828;
+    border-radius: 20px;
+    padding-bottom: 10px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.63);
+    margin: 15px 30px;
+    animation: shake 0.8s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg);}
+    20% { transform: translate(-8px, 0) rotate(7deg);}
+    40% { transform: translate(2px, -2px) rotate(1deg);}
+    60% { transform: translate(-4px, 5px) rotate(0deg);}
+    80% { transform: translate(-2px, -9px) rotate(2deg);}
+    100% { transform: translate(3px, 0) rotate(-1deg);}
+}
+
+
 .demon-card-img{
-    width: 50px;
-    height: 50px;
+    align-self: flex-start;
+    width: 100%;
+    aspect-ratio: 5/4;
+    border-radius: 20px 20px 0 0;
+    object-fit: fill;
+}
+
+.demon-card-name{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    color: #ffbb00;
+    padding-top: 5px;
+}
+
+.demon-card-nivel{
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+    color: #180202
+}
+
+.demon-card-estadoCivil{
+    font-size: 18px;
+    text-align: center;
+    margin: 3px;
+    color: #180202
 }

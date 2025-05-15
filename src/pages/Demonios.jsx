@@ -34,7 +34,9 @@ const Demonios = () => {
 
    return (
       <div className="demonios">
+         <div className="demonios-title-container">
          <h1 className="demonios-title">Bienvenides al infierno!</h1>
+         </div>
          <DemoniosContainer
             demonios={pageDTO.espiritus}
          />
