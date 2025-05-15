@@ -1,4 +1,5 @@
 import { getDemonioImg } from "./DemoniosMapper";
+import "../css/DemonCard.css";
 
 const DemonCard = ({ id, name, nivelConexion, mediumId }) => {
    const demonImg = getDemonioImg(name, id);

@@ -10,7 +10,7 @@ const Demonios = () => {
       espiritus: [],
       currentPage: 1,
       amountOfPages: 1,
-      amountOfElements: 6,
+      amountOfElements: 4,
       orden: "asc"
    });
 
@@ -28,7 +28,6 @@ const Demonios = () => {
       API.espiritusDemoniacos(newPage)
          .then((response) => {
             setPageDTO(response.data);
-            window.scrollTo({ top: 0, behavior: "smooth" });
          })
          .catch(console.log("malio sal"));
    };
