@@ -83,7 +83,7 @@ const Mediums = () => {
                onCreate={handleCreate}
                onCancel={() => setShowPopup(false)}
                setSelected={setSelected}
-               refreshUbicaciones={refreshUbicaciones}
+               refreshMediums={refreshMediums}
             />
          )}
       </>

@@ -86,7 +86,7 @@ const Espiritus = () => {
                onCreate={handleCreate}
                onCancel={() => setShowPopup(false)}
                setSelected={setSelected}
-               refreshUbicaciones={refreshUbicaciones}
+               refreshEspiritus={refreshEspiritus}
             />
          )}
       </>
