@@ -35,11 +35,11 @@ const ConectarEspiritu = () => {
             console.error("Error al conectar:", error);
             alert("Error al conectar con el medium.");
          });
-   }
+   };
 
    return (
       <div className="conectar-espiritu">
-         <h1>Elige a tu medium</h1>
+         <h1 className="conectar-title">Elige a tu medium</h1>
          {mediumsAvailable.length === 0 ? (
             <div className="no-mediums">
                <p>No hay mediums disponibles.</p>
@@ -47,20 +47,31 @@ const ConectarEspiritu = () => {
          ) : (
             <div className="medium-list">
                {mediumsAvailable.map((medium) => (
-                  <div
+                  <ChooseMediumCard
+                     medium={medium}
                      key={medium.id}
-                     className={`medium-card ${
-                        selectedMedium.id === medium.id ? "selected" : ""
-                     }`}
+                     selected={selectedMedium.id === medium.id}
                      onClick={() => setSelected(medium)}
-                  >
-                     <h2>{medium.nombre}</h2>
-                     <p>Mana actual: {medium.mana}</p>
-                  </div>
+                  />
                ))}
-               <button onClick={handleConectar}>Conectar con {selectedMedium.nombre}</button>
+               <button onClick={handleConectar}>
+                  Conectar con {selectedMedium.nombre}
+               </button>
             </div>
          )}
+      </div>
+   );
+};
+
+const ChooseMediumCard = ({ medium, selected, onClick }) => {
+   return (
+      <div
+         className={`medium-card ${selected ? "selected" : ""}`}
+         onClick={onClick}
+      >
+         <img src={medium.imagen} alt={medium.nombre} />
+         <h2>{medium.nombre}</h2>
+         <p>Mana actual: {medium.mana}</p>
       </div>
    );
 };

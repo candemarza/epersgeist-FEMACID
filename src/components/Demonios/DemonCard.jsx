@@ -1,8 +1,8 @@
-import { getDemonioImg } from "./DemoniosMapper";
+import { getEspirituImg } from "../../imageMappers/EspiritusMapper";
 import "../css/DemonCard.css";
 
-const DemonCard = ({ id, name, nivelConexion, mediumId }) => {
-   const demonImg = getDemonioImg(name, id);
+const DemonCard = ({ id, name, mediumId }) => {
+   const demonImg = getEspirituImg(name, id, 'demoniaco');
    return (
       <div className="demon-card">
          <img src={demonImg} alt={name} className="demon-card-img" />
