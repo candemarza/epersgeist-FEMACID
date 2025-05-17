@@ -1,9 +1,10 @@
 import "./css/Demonios.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../service/api";
 import DemoniosContainer from "../components/Demonios/DemoniosContainer";
 import Pagination from "../components/Demonios/Pagination";
-
+import { IoIosArrowBack } from "react-icons/io";
 
 const Demonios = () => {
    const [pageDTO, setPageDTO] = useState({
@@ -11,18 +12,18 @@ const Demonios = () => {
       currentPage: 1,
       amountOfPages: 1,
       amountOfElements: 4,
-      orden: "asc"
+      orden: "asc",
    });
 
    useEffect(() => {
-    API.espiritusDemoniacos(1)
-      .then((response) => {
-        setPageDTO(response.data);
-      })
-      .catch(() => {
-        console.log("malio sal");
-      });
-  }, []);
+      API.espiritusDemoniacos(1)
+         .then((response) => {
+            setPageDTO(response.data);
+         })
+         .catch(() => {
+            console.log("malio sal");
+         });
+   }, []);
 
    const handleChangePage = (newPage) => {
       API.espiritusDemoniacos(newPage)
@@ -32,20 +33,29 @@ const Demonios = () => {
          .catch(console.log("malio sal"));
    };
 
+   const navigate = useNavigate();
+   const goHome = () => {
+      navigate(`/`);
+   };
+
    return (
-      <div className="demonios">
-         <div className="demonios-title-container">
-         <h1 className="demonios-title">Bienvenides al infierno!</h1>
+      <>
+         <div className="goBack">
+            <IoIosArrowBack onClick={goHome} />
          </div>
-         <DemoniosContainer
-            demonios={pageDTO.espiritus}
-         />
-         <Pagination
-            currentPage={pageDTO.currentPage}
-            amountOfPages={pageDTO.amountOfPages}
-            onPageChange={handleChangePage}
-         />
-      </div>
+
+         <div className="demonios">
+            <div className="demonios-title-container">
+               <h1 className="demonios-title">Bienvenides al infierno!</h1>
+            </div>
+            <DemoniosContainer demonios={pageDTO.espiritus} />
+            <Pagination
+               currentPage={pageDTO.currentPage}
+               amountOfPages={pageDTO.amountOfPages}
+               onPageChange={handleChangePage}
+            />
+         </div>
+      </>
    );
 };
 export default Demonios;

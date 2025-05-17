@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 220px;
-    height: 280px;
+    width: 160px;
+    height: 220px;
     background-color: #b62828;
     border-radius: 20px;
     padding-bottom: 10px;
@@ -31,19 +31,13 @@
 }
 
 .demon-card-name{
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     margin: 0;
     color: #ffbb00;
     padding-top: 5px;
 }
 
-.demon-card-nivel{
-    font-size: 18px;
-    text-align: center;
-    margin: 0;
-    color: #180202
-}
 
 .demon-card-estadoCivil{
     font-size: 18px;

@@ -1,11 +1,4 @@
 .paginator {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-top: 12px;
-   background-color: rgb(255, 217, 0);
-   margin: 2px;
-   border-radius: 20px;
    position: absolute;
    -webkit-animation: moveX 5s linear 0s infinite alternate,
       moveY 6s linear 0s infinite alternate;
@@ -67,6 +60,29 @@
    to { top: calc(100vh - 65px); }
 }
 
+.paginator-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 12px;
+   background-color: rgb(255, 217, 0);
+   margin: 2px;
+   border-radius: 20px;
+   position: absolute;
+   width: 205px;
+   height: 63px;
+}
+
+.explosion{
+   position: absolute;
+   transform: translateX(-7%) translateY(-50%);
+   z-index: 20;
+}
+
+.explosion img{
+   width: 300px;
+}
+
 .paginator-arrow {
    cursor: pointer;
    font-size: 60px;
@@ -81,6 +97,6 @@
 
 .paginator-pages {
    margin: 0;
-   font-size: 30px;
+   font-size: 25px;
    color: #ff0000;
 }

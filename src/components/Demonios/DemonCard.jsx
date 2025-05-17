@@ -7,7 +7,7 @@ const DemonCard = ({ id, name, nivelConexion, mediumId }) => {
       <div className="demon-card">
          <img src={demonImg} alt={name} className="demon-card-img" />
          <h3 className="demon-card-name">{name}</h3>
-         <p className="demon-card-nivel">Nivel de conexión: {nivelConexion}</p>
+      
          {mediumId ? (
             <p className="demon-card-estadoCivil">Medium: {id}</p>
          ) : (
