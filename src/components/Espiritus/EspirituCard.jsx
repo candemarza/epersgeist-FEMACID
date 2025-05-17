@@ -1,16 +1,18 @@
 import "../css/Card.css";
 import "../css/EspirituCard.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../../service/api";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
-import API from "../../service/api";
 import demoniacoImg from "../../assets/demoniaco.jpg";
 import angelicalImg from "../../assets/angelical.jpg";
-import { useEffect, useState } from "react";
 
 const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
    const [showPopup, setShowPopup] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
    const [espirituData, setEspirituData] = useState(espiritu);
+   const navigate = useNavigate();
 
    const backgroundImage =
       espirituData.tipo === "Demoniaco" ? demoniacoImg : angelicalImg;
@@ -31,6 +33,10 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
       onUpdate();
       setEspirituData(updatedEspiritu);
       setIsEditing(false);
+   };
+
+   const conectar = () => {
+      navigate(`/conectarEspiritu/${espirituData.id}`);
    };
 
    return isEditing ? (
@@ -83,7 +89,7 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
                   )}
                   {!espirituData.mediumId && (
                      <div className="espiritu-buttonContainer">
-                        <button className="card-button">
+                        <button className="card-button" onClick={conectar}>
                            Conectar A
                         </button>
                      </div>
