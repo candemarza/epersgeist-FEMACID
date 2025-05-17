@@ -1,20 +1,41 @@
 import "../css/Pagination.css";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
+import { useState } from "react";
+import explosion from "../../assets/explosion.gif";
 
 const Pagination = ({ currentPage, amountOfPages, onPageChange }) => {
+   const [showExplotion, setShowExplotion] = useState(false);
+
+   const handleExplosion = (newPage) => {
+      setShowExplotion(true);
+      setTimeout(() => {
+         setShowExplotion(false);
+      }, 1000);
+      onPageChange(newPage);
+   };
 
    return (
       <div className="paginator">
-         <PastPage currentPage={currentPage} onPageChange={onPageChange} />
-         <p className="paginator-pages">
-            {currentPage} de {amountOfPages}
-         </p>
-         <NextPage
-            currentPage={currentPage}
-            amountOfPages={amountOfPages}
-            onPageChange={onPageChange}
-         />
+         {showExplotion && (
+            <div className="explosion">
+               <img src={explosion} alt="explosion" />
+            </div>
+         )}
+         <div className="paginator-container">
+            <PastPage
+               currentPage={currentPage}
+               onPageChange={handleExplosion}
+            />
+            <p className="paginator-pages">
+               {currentPage} de {amountOfPages}
+            </p>
+            <NextPage
+               currentPage={currentPage}
+               amountOfPages={amountOfPages}
+               onPageChange={handleExplosion}
+            />
+         </div>
       </div>
    );
 };

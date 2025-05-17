@@ -34,3 +34,18 @@
         transform: rotateY(360deg);
     }
 }
+
+.goBack {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
+
+.dem{
+    color: #e6af39
+    
+}

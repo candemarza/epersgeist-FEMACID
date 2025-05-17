@@ -1,11 +1,11 @@
-import API from "../service/api";
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
 import TipoToggle from "../components/TipoToggle";
-import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 const Ubicaciones = () => {

@@ -1,8 +1,9 @@
-import CreateButton from "../components/CreateButton";
-import SearchBar from "../components/SearchBar";
+import "./css/GetAll.css";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../service/api";
-import { useNavigate } from "react-router-dom";
+import CreateButton from "../components/CreateButton";
+import SearchBar from "../components/SearchBar";
 import EspiritusContent from "../components/Espiritus/EspiritusContent";
 import TipoToggle from "../components/TipoToggle";
 import { IoIosArrowBack } from "react-icons/io";

@@ -1,8 +1,9 @@
+import "./css/GetAll.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
-import { useEffect, useState } from "react";
-import API from "../service/api";
-import { useNavigate } from "react-router-dom";
 import MediumContent from "../components/Medium/MediumContent";
 import { IoIosArrowBack } from "react-icons/io";
 

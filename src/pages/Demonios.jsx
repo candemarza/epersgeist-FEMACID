@@ -40,10 +40,9 @@ const Demonios = () => {
 
    return (
       <>
-         <div className="goBack">
+         <div className="goBack dem">
             <IoIosArrowBack onClick={goHome} />
          </div>
-
          <div className="demonios">
             <div className="demonios-title-container">
                <h1 className="demonios-title">Bienvenides al infierno!</h1>
