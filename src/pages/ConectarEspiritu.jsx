@@ -10,6 +10,8 @@ const ConectarEspiritu = () => {
    const [mediumsAvailable, setMediumsAvailable] = useState([]);
    const [selectedMedium, setSelectedMedium] = useState({});
    const [espiritu, setEspiritu] = useState({});
+   const [showPopupSuccess, setShowPopupSuccess] = useState(false);
+   const [showPopupError, setShowPopupError] = useState(false);
    const navigate = useNavigate();
    const goBack = () => {
       navigate(-1);
@@ -35,11 +37,10 @@ const ConectarEspiritu = () => {
    const handleConectar = () => {
       API.conectarEspiritu(espiritu.id, selectedMedium.id)
          .then(() => {
-            alert(`Conectado con ${selectedMedium.nombre}`);
+            setShowPopupSuccess(true);
          })
-         .catch((error) => {
-            console.error("Error al conectar:", error);
-            alert("Error al conectar con el medium.");
+         .catch(() => {
+            setShowPopupError(true);
          });
    };
 
@@ -72,6 +73,27 @@ const ConectarEspiritu = () => {
                </>
             )}
          </div>
+         {showPopupSuccess && (
+            <div className="popup">
+               <div className="popup-content">
+                  <h2>Conexión exitosa!!</h2>
+                  <p>Te conectaste con {selectedMedium.nombre}</p>
+                  <button onClick={goBack}>Volver</button>
+               </div>
+            </div>
+         )}
+         {showPopupError && (
+            <div className="popup">
+               <div className="popup-content">
+                  <h2>Error al conectar con medium</h2>
+                  <p>{selectedMedium.nombre} tiene mucho flow B)</p>
+                  <button onClick={() => setShowPopupError(false)}>
+                     Intentar con otro medium
+                  </button>
+                  <button onClick={goBack}>Volver</button>
+               </div>
+            </div>
+         )}
       </>
    );
 };
