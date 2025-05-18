@@ -5,9 +5,7 @@
    justify-content: center;
    height: 100vh;
    width: 100vw;
-   background-image: url('/src/assets/flower_bg.png');
-   background-size: cover;
-   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+   background-color: #8880b8;
 }
 
 .conectar-title{
@@ -15,4 +13,8 @@
    color: #e7e6ee;
    text-shadow: 2px 2px 4px rgb(188, 159, 221);
    text-align: center;
+}
+
+.choose-medium-img{
+   width: 100px;
 }

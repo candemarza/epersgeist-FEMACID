@@ -12,6 +12,7 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
    const [showPopup, setShowPopup] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
    const [espirituData, setEspirituData] = useState(espiritu);
+   const [meidumName, setMediumName] = useState("");
    const navigate = useNavigate();
 
    const backgroundImage =
@@ -38,6 +39,20 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
    const conectar = () => {
       navigate(`/conectarEspiritu/${espirituData.id}`);
    };
+
+   useEffect(() => {
+      if (espirituData.mediumId) {
+         API.getMediumById(espirituData.mediumId)
+            .then((response) => {
+               setMediumName(response.data.nombre);
+            })
+            .catch(() => {
+               setMediumName(null);
+            });
+      } else {
+         setMediumName("");
+      }
+   }, [espirituData.mediumId]);
 
    return isEditing ? (
       <EditCard
@@ -66,13 +81,9 @@ const EspirituCard = ({ espiritu, onDelete, onUpdate }) => {
                   </h3>
                   {espirituData.mediumId && (
                      <>
-                        <h3 className="card-id">
-                           Medium: {espirituData.mediumId}
-                        </h3>
+                        <h3 className="card-id">Medium: {meidumName}</h3>
                         <div className="card-energia-container">
-                           <h2 className="card-energia">
-                              Nivel de conexion:
-                           </h2>
+                           <h2 className="card-energia">Nivel de conexion:</h2>
                            <div className="progress-bar">
                               <div
                                  className="progress-bar-fill"
@@ -111,16 +122,14 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
    const [editedNombre, setEditedNombre] = useState(espiritu.nombre);
    const [error, setError] = useState("");
 
-   
-
    const handleSaveChanges = () => {
       if (!editedNombre.trim()) {
-         setError("El nombre no puede estar vacío");  
+         setError("El nombre no puede estar vacío");
          return;
       }
 
       const updateBodyDTO = {
-         nombre: editedNombre
+         nombre: editedNombre,
       };
 
       API.updateEspiritu(espiritu.id, updateBodyDTO)
@@ -128,7 +137,7 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
             onSave({ ...espiritu, ...updateBodyDTO });
          })
          .catch(() => {
-             setError("Algo malio sal");
+            setError("Algo malio sal");
          });
    };
 
@@ -158,13 +167,9 @@ const EditCard = ({ espiritu, onSave, onCancel }) => {
                   </h3>
                   {espiritu.mediumId && (
                      <>
-                        <h3 className="card-id">
-                           Medium: {espiritu.mediumId}
-                        </h3>
+                        <h3 className="card-id">Medium: {espiritu.mediumId}</h3>
                         <div className="card-energia-container">
-                           <h2 className="card-energia">
-                              Nivel de conexion:
-                           </h2>
+                           <h2 className="card-energia">Nivel de conexion:</h2>
                            <div className="progress-bar">
                               <div
                                  className="progress-bar-fill"

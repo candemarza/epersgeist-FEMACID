@@ -2,6 +2,7 @@ import "./css/ConectarEspiritus.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../service/api";
+import { getMediumImg } from "../imageMappers/MediumsMapper";
 
 const ConectarEspiritu = () => {
    const params = useParams();
@@ -45,33 +46,44 @@ const ConectarEspiritu = () => {
                <p>No hay mediums disponibles.</p>
             </div>
          ) : (
-            <div className="medium-list">
-               {mediumsAvailable.map((medium) => (
-                  <ChooseMediumCard
-                     medium={medium}
-                     key={medium.id}
-                     selected={selectedMedium.id === medium.id}
-                     onClick={() => setSelected(medium)}
-                  />
-               ))}
+            <>
+               <div className="medium-list">
+                  {mediumsAvailable.map((medium) => (
+                     <ChooseMediumCard
+                        medium={medium}
+                        key={medium.id}
+                        selected={selectedMedium.id === medium.id}
+                        onClick={() => setSelected(medium)}
+                     />
+                  ))}
+               </div>
                <button onClick={handleConectar}>
                   Conectar con {selectedMedium.nombre}
                </button>
-            </div>
+            </>
          )}
       </div>
    );
 };
 
 const ChooseMediumCard = ({ medium, selected, onClick }) => {
+   const mediumImg = getMediumImg(medium.nombre);
+
    return (
       <div
-         className={`medium-card ${selected ? "selected" : ""}`}
+         className={`choose-medium-card ${
+            selected ? "selectedCard" : ""
+         }`}
          onClick={onClick}
       >
-         <img src={medium.imagen} alt={medium.nombre} />
-         <h2>{medium.nombre}</h2>
-         <p>Mana actual: {medium.mana}</p>
+         {!selected && <div className="choose-medium-notselected" />}
+         <img
+            className="choose-medium-img"
+            src={mediumImg}
+            alt={medium.nombre}
+         />
+         <h2 className="choose-medium-nombre">{medium.nombre}</h2>
+         <p className="choose-medium-mana">Mana actual: {medium.mana}</p>
       </div>
    );
 };

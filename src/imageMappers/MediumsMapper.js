@@ -1,6 +1,6 @@
-import lolo from '../../assets/lolo.png';
-import olol from '../../assets/olol.png';
-import defaultImg from '../../assets/medium.jpg';
+import lolo from '../assets/lolo.png';
+import olol from '../assets/olol.png';
+import defaultImg from '../assets/medium.png';
 
 
 const mediumImgs ={
