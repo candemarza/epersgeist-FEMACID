@@ -19,9 +19,9 @@ function App() {
                <Route path="/" element={<Home />} />
                <Route path="/demonios" element={<Demonios />} />
             </Route>
-            <Route path="/ubicaciones" element={<Ubicaciones />} />
-            <Route path="/espiritus" element={<Espiritus />} />
-            <Route path="/mediums" element={<Mediums />} />
+            <Route path="/ubicaciones/:id?" element={<Ubicaciones />} />
+            <Route path="/espiritus/:id?" element={<Espiritus />} />
+            <Route path="/mediums/:id?" element={<Mediums />} />
             <Route path="/conectarEspiritu/:id" element={<ConectarEspiritu />} />
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
          </Routes>

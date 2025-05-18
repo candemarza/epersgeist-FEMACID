@@ -1,6 +1,6 @@
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
@@ -19,6 +19,7 @@ const Ubicaciones = () => {
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
+   const { id } = useParams();
 
    const navigate = useNavigate();
    const goHome = () => {
@@ -43,20 +44,30 @@ const Ubicaciones = () => {
    useEffect(() => {
       API.getUbicaciones().then((res) => {
          setUbicaciones(res.data);
-         setSelectedUbicacion(res.data[0]);
       });
    }, []);
 
+   useEffect(() => {
+      if (ubicaciones.length > 0) {
+         if (id) {
+            const found = ubicaciones.find((e) => String(e.id) === String(id));
+            setSelectedUbicacion(found || null);
+         } else {
+            setSelectedUbicacion(ubicaciones[0]);
+         }
+      }
+   }, [ubicaciones, id]);
+
    const setSelected = (ubicacion) => {
       setSelectedUbicacion(ubicacion);
+      navigate(`/ubicaciones/${ubicacion.id}`);
    };
 
    const refreshUbicaciones = (ubicacionSeleccionada = null) => {
-      API.getUbicaciones()
-         .then((res) => {
-            setUbicaciones(res.data);
-            setSelectedUbicacion(ubicacionSeleccionada || res.data[0]);
-         });
+      API.getUbicaciones().then((res) => {
+         setUbicaciones(res.data);
+         setSelectedUbicacion(ubicacionSeleccionada || res.data[0]);
+      });
    };
 
    const handleShowCreatePopUp = () => {

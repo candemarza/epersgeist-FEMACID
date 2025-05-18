@@ -1,5 +1,5 @@
 import "./css/GetAll.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
@@ -10,13 +10,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 const Espiritus = () => {
    const [espiritus, setEspiritus] = useState([]);
-   const [selectedEspiritu, setSelectedEspiritu] = useState({
-      id: "",
-      nombre: "",
-      tipo: "",
-      nivelDeConexion: "",
-      mediumId: "",
-   });
+   const { id } = useParams();
+   const [selectedEspiritu, setSelectedEspiritu] = useState(null);
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
@@ -42,22 +37,32 @@ const Espiritus = () => {
    };
 
    useEffect(() => {
-      API.getEspiritus().then((res) => {
-         setEspiritus(res.data);
-         setSelectedEspiritu(res.data[0]);
-      });
-   }, []);
+   API.getEspiritus().then((res) => {
+      setEspiritus(res.data);
+   });
+}, []);
+
+   useEffect(() => {
+      if (espiritus.length > 0) {
+         if (id) {
+            const found = espiritus.find((e) => String(e.id) === String(id));
+            setSelectedEspiritu(found || null);
+         } else {
+            setSelectedEspiritu(espiritus[0]);
+         }
+      }
+   }, [espiritus, id]);
 
    const setSelected = (espiritu) => {
       setSelectedEspiritu(espiritu);
+      navigate(`/espiritus/${espiritu.id}`);
    };
 
    const refreshEspiritus = (selectedEspiritu = null) => {
-      API.getEspiritus()
-         .then((res) => {
-            setEspiritus(res.data);
-            setSelectedEspiritu(selectedEspiritu || res.data[0]);
-         });
+      API.getEspiritus().then((res) => {
+         setEspiritus(res.data);
+         setSelectedEspiritu(selectedEspiritu || res.data[0]);
+      });
    };
 
    const handleShowCreatePopUp = () => {

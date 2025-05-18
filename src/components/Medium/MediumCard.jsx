@@ -47,6 +47,10 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
       onUpdate();
    };
 
+   const tieneAngeles = mediumData.espiritus.some(
+      (espiritu) => espiritu.tipo === "Angelical"
+   );
+
    return isEditing ? (
       <EditCard
          medium={mediumData}
@@ -93,8 +97,16 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
                   </div>
 
                   <div className="medium-buttonContainer">
-                     <button className="card-button">Conectar A</button>
+                     <button className="card-button">Invocar</button>
                   </div>
+                  <div className="medium-buttonContainer">
+                     <button className="card-button">Descansar</button>
+                  </div>
+                  {tieneAngeles && (
+                     <div className="medium-buttonContainer">
+                        <button className="card-button">Exorcizar</button>
+                     </div>
+                  )}
                </div>
             </div>
          </div>
@@ -114,7 +126,6 @@ const EditCard = ({ medium, onSave, onCancel }) => {
    const [error, setError] = useState("");
 
    const handleSaveChanges = () => {
-
       if (editedManaMax < 0) {
          setError("El mana maximo no puede ser menor a 0");
          return;
@@ -142,7 +153,7 @@ const EditCard = ({ medium, onSave, onCancel }) => {
             onSave({ ...medium, ...updateBodyDTO });
          })
          .catch(() => {
-             setError("Algo malio sal");
+            setError("Algo malio sal");
          });
    };
 
@@ -182,23 +193,18 @@ const EditCard = ({ medium, onSave, onCancel }) => {
                      Espiritus: {medium.espiritus.length}
                   </h3>
                   <div className="card-energia-container">
-                  <h3 className="card-energia-max">
-                     Mana Max:
-                  </h3>
-                  <input
-                     className="card-energia-edit"
-                     type="number"
-                     value={editedManaMax}
-                     onChange={(e) => setEditedManaMax(e.target.value)}
-                  />
+                     <h3 className="card-energia-max">Mana Max:</h3>
+                     <input
+                        className="card-energia-edit"
+                        type="number"
+                        value={editedManaMax}
+                        onChange={(e) => setEditedManaMax(e.target.value)}
+                     />
                   </div>
                </div>
                {error && <div className="error">{error}</div>}
                <div className="medium-buttonContainer">
-                  <button
-                     className="card-button"
-                     onClick={handleSaveChanges}
-                  >
+                  <button className="card-button" onClick={handleSaveChanges}>
                      Guardar cambios
                   </button>
                   <button className="card-button" onClick={onCancel}>

@@ -1,6 +1,6 @@
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
@@ -9,13 +9,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 const Mediums = () => {
    const [mediums, setMediums] = useState([]);
-   const [selectedMedium, setSelectedMedium] = useState({
-      id: "",
-      nombre: "",
-      tipo: "",
-      nivelDeConexion: "",
-      mediumId: "",
-   });
+   const [selectedMedium, setSelectedMedium] = useState(null);
+   const { id } = useParams();
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
@@ -41,15 +36,27 @@ const Mediums = () => {
    };
 
    useEffect(() => {
-      API.getMediums().then((res) => {
-         setMediums(res.data);
-         setSelectedMedium(res.data[0]);
-      });
-   }, []);
+   API.getMediums().then((res) => {
+      setMediums(res.data);
+   });
+}, []);
 
-   const setSelected = (medium) => {
-      setSelectedMedium(medium);
+    useEffect(() => {
+      if (mediums.length > 0) {
+         if (id) {
+            const found = mediums.find((e) => String(e.id) === String(id));
+            setSelectedMedium(found || null);
+         } else {
+            setSelectedMedium(mediums[0]);
+         }
+      }
+   }, [mediums, id]);
+
+   const setSelected = (mediums) => {
+      setSelectedMedium(mediums);
+      navigate(`/mediums/${mediums.id}`);
    };
+
 
    const refreshMediums = (selectedMedium = null) => {
       API.getMediums()
