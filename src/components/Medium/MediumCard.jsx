@@ -219,7 +219,7 @@ const EditCard = ({ medium, onSave, onCancel }) => {
 
 const DeletePopUp = ({ onDelete, onCancel }) => (
    <div className="popup-overlay">
-      <div className="popup">
+      <div className="popup-delete">
          <p>¿Estás seguro de que deseas eliminar este medium?</p>
          <div className="popup-buttons">
             <button className="popup-button confirm" onClick={onDelete}>

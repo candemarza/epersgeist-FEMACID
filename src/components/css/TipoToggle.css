@@ -25,18 +25,19 @@
     border-radius: 10px;
     font-size: 18px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 1px solid #a39fa7;
     text-align: center;
     font-weight: 400;
     width: 158px;
 }
 
 .tipo-option.active {
-    background-color: #e26bce;
+    background-color: #9d65bec0;
     color: white;
     border: none;
 }
 
 .tipo-option:hover {
-    background-color: #e26bce77;
+    background-color: #9d65be3f;
+    border: 1px solid #a39fa700;
 }

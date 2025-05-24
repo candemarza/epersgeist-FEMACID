@@ -184,11 +184,11 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
                <div className="create-input-container">
                   <p className="create-input-label">Ubicación</p>
                   <select
-                     className="create-input"
+                     className="create-input select"
                      value={ubicacionID}
                      onChange={(e) => setUbicacionID(e.target.value)}
                   >
-                     <option value="">Selecciona una ubicación...</option>
+                     <option className="select-option" value="">Selecciona una ubicación...</option>
                      {ubicaciones.map((ubicacion) => (
                         <option key={ubicacion.id} value={ubicacion.id}>
                            {ubicacion.nombre}

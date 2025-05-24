@@ -13,20 +13,20 @@
   align-items: center;
   padding-right: 10px;
   border-radius: 10px;
-  background-color: #f0f0f0;
+  background-color: #3f3942;
   cursor: pointer;
 }
 
 .selected {
-  background-color: #df90d2;
+  background-color: #6c4781;
 }
 
 .items-list-item:hover {
-  background-color: #e9c8e3;
+  background-color: #9f89ac;
 }
 
 .selected:hover {
-  background-color: #df90d2;
+  background-color: #8962a0;
 }
 
 .items-list-icon {

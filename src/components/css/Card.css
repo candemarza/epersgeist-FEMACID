@@ -99,48 +99,13 @@
 }
 
 /*delete*/
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup {
-    background-color: white;
+.popup-delete{
+    background-color: #3f3942;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 300px;
-}
-
-.popup-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.popup-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.popup-button.confirm {
-    background-color: #e26bce;
-    color: white;
-}
-
-.popup-button.cancel {
-    background-color: #51afcc;
-    color: white;
 }
 
 /*edit*/

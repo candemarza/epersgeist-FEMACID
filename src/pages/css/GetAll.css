@@ -46,20 +46,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #dcd5e2;
 }
 
 .popup-create {
-    background-color: white;
+    background-color: #3f3942;
     padding: 20px 50px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 500px;
     box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .popup-buttons {
@@ -76,19 +77,29 @@
 }
 
 .popup-button.confirm {
-    background-color: #e26bce;
+    background-color: #9e65be;
     color: white;
 }
 
+.popup-button.confirm:hover {
+    background-color: #7a4b9c;
+}
+
 .popup-button.cancel {
-    background-color: #51afcc;
+    background-color: #00000000;
     color: white;
+}
+
+.popup-button.cancel:hover {
+    background-color: #00000000;
+    text-decoration: underline;
 }
 
 .creat-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    
 }
 
 .create-inputs {
@@ -114,16 +125,33 @@
     height: 40px;
     padding: 5px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #a39fa7;
     font-size: 12px;
     box-sizing: border-box;
+    background-color: #4f4952;
+    color: #cfccd1;
 }
 
-.create-input:focus {
-    outline: none;
-    border-color: #51afcc;
+.create-input::placeholder {
+    color: #cfccd1;
 }
 
+.select {
+    color: #cfccd1;
+}
+
+
+.create-input.select:focus {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.select-option {
+    background: #3f3942;
+    color: #cfccd1;
+    padding: 10px;
+}
+
+/*no items*/
 .getAll-noItems {
     display: flex;
     flex-direction: column;
@@ -141,6 +169,7 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+
 .getAll-noItems-subtitle {
     font-size: 25px;
     font-weight: 400;
@@ -157,7 +186,7 @@
 }
 
 .error{
-    color: red;
+    color: rgb(255, 81, 81);
     font-size: 15px;
     margin-top: 18px;
 }
