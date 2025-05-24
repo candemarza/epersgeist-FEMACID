@@ -5,7 +5,8 @@
   gap: 8px;
   height: auto;
   overflow: auto;
-  width: 70%;
+  width: 100%;
+  max-width: 550px;
 }
 
 .items-list-item {
