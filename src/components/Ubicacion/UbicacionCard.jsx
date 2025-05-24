@@ -70,12 +70,12 @@ const UbicacionCard = ({ ubicacion, onDelete, onUpdate }) => {
                      </p>
                   </div>
                </div>
-               <div className="ubicacion-buttonContainer">
+               {/* <div className="ubicacion-buttonContainer">
                   <button className="card-button">Espiritus</button>
                   <button className="card-button">
                      MediumsSinEspiritus
                   </button>
-               </div>
+               </div> */}
             </div>
          </div>
          {showPopup && (

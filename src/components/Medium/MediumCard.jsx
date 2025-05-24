@@ -95,18 +95,14 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
                         {manaPorcentaje}%
                      </p>
                   </div>
-
-                  <div className="medium-buttonContainer">
+                  {/* <div className="medium-buttonContainer">
                      <button className="card-button">Invocar</button>
-                  </div>
-                  <div className="medium-buttonContainer">
                      <button className="card-button">Descansar</button>
-                  </div>
-                  {tieneAngeles && (
-                     <div className="medium-buttonContainer">
+                     <button className="card-button">Mover</button>
+                     {tieneAngeles && (
                         <button className="card-button">Exorcizar</button>
-                     </div>
-                  )}
+                     )}
+                  </div> */}
                </div>
             </div>
          </div>
