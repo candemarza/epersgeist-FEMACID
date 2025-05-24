@@ -5,7 +5,8 @@ import Ubicaciones from "./pages/Ubicaciones";
 import Espiritus from "./pages/Espiritus";
 import Mediums from "./pages/Mediums";
 import Demonios from "./pages/Demonios";
-import ConectarEspiritu from "./pages/ConectarEspiritu";
+import ConectarAMedium from "./pages/ConectarAMedium";
+import InvocarEspiritu from "./pages/InvocarEspiritu";
 import music from "./assets/welcome.mp3";
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
             <Route path="/ubicaciones/:id?" element={<Ubicaciones />} />
             <Route path="/espiritus/:id?" element={<Espiritus />} />
             <Route path="/mediums/:id?" element={<Mediums />} />
-            <Route path="/conectarEspiritu/:id" element={<ConectarEspiritu />} />
+            <Route path="/conectarAMedium/:id" element={<ConectarAMedium />} />
+            <Route path="/invocarEspiritu/:id" element={<InvocarEspiritu />} />
             <Route path="*" element={<h1>404 Page Not Found</h1>} />
          </Routes>
       </>

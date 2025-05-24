@@ -5,7 +5,7 @@ import API from "../service/api";
 import { getMediumImg } from "../imageMappers/MediumsMapper";
 import { IoIosArrowBack } from "react-icons/io";
 
-const ConectarEspiritu = () => {
+const ConectarAMedium = () => {
    const params = useParams();
    const [mediumsAvailable, setMediumsAvailable] = useState([]);
    const [selectedMedium, setSelectedMedium] = useState({});
@@ -120,4 +120,4 @@ const ChooseMediumCard = ({ medium, selected, onClick }) => {
    );
 };
 
-export default ConectarEspiritu;
+export default ConectarAMedium;

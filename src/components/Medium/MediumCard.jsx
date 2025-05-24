@@ -1,28 +1,20 @@
 import "../css/Card.css";
 import "../css/MediumCard.css";
+import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
+import API from "../../service/api";
 import EditButton from "../EditButton";
 import DeleteButton from "../DeleteButton";
-import API from "../../service/api";
-import mediumImg from "../../assets/medium.png";
-import lolo from "../../assets/lolo.png";
-import olol from "../../assets/olol.png";
-import { useEffect, useState } from "react";
+import { getMediumImg } from "../../imageMappers/MediumsMapper";
+
 
 const MediumCard = ({ medium, onDelete, onUpdate }) => {
    const [showPopup, setShowPopup] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
    const [mediumData, setMediumData] = useState(medium);
+   const navigate = useNavigate();
 
-   const backgroundImage = () => {
-      switch (medium.nombre.toLowerCase()) {
-         case "lolo":
-            return lolo;
-         case "olol":
-            return olol;
-         default:
-            return mediumImg;
-      }
-   };
+   const mediumImg = getMediumImg(mediumData.nombre);
 
    const manaPorcentaje = (
       (mediumData.mana * 100) /
@@ -51,6 +43,10 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
       (espiritu) => espiritu.tipo === "Angelical"
    );
 
+   const invocar = () => {
+      navigate(`/invocarEspiritu/${mediumData.id}`);
+   }
+
    return isEditing ? (
       <EditCard
          medium={mediumData}
@@ -60,7 +56,7 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
    ) : (
       <div
          className="card"
-         style={{ backgroundImage: `url(${backgroundImage()})` }}
+         style={{ backgroundImage: `url(${mediumImg})` }}
       >
          <div className="card-buttonContainer">
             <EditButton onClick={() => setIsEditing(true)} />
@@ -95,14 +91,14 @@ const MediumCard = ({ medium, onDelete, onUpdate }) => {
                         {manaPorcentaje}%
                      </p>
                   </div>
-                  {/* <div className="medium-buttonContainer">
-                     <button className="card-button">Invocar</button>
-                     <button className="card-button">Descansar</button>
+                  <div className="medium-buttonContainer">
+                     <button className="card-button" onClick={invocar}>Invocar</button>
+                     {/* <button className="card-button">Descansar</button>
                      <button className="card-button">Mover</button>
                      {tieneAngeles && (
                         <button className="card-button">Exorcizar</button>
-                     )}
-                  </div> */}
+                     )} */}
+                  </div>
                </div>
             </div>
          </div>
