@@ -20,6 +20,7 @@ const Ubicaciones = () => {
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
    const { id } = useParams();
+   const navigate = useNavigate();
 
    const handleSearch = (e) => {
       e.preventDefault();

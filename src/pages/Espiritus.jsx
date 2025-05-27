@@ -1,5 +1,5 @@
 import "./css/GetAll.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
@@ -15,6 +15,8 @@ const Espiritus = () => {
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
+   const navigate = useNavigate();
+   
 
    const handleSearch = (e) => {
       e.preventDefault();
