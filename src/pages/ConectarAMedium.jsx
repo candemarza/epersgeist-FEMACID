@@ -51,7 +51,7 @@ const ConectarAMedium = () => {
 
    const scrollMediums = (direction) => {
       const container = scrollRef.current;
-      const scrollAmount = 500;
+      const scrollAmount = 800;
 
       container.scrollBy({
          left: scrollAmount * direction,
@@ -96,9 +96,10 @@ const ConectarAMedium = () => {
                         ▶
                      </IoIosArrowForward>
                   </div>
-                  <button onClick={handleConectar}>
+                  <div onClick={handleConectar}
+                     className="conectar-button">
                      Conectar con {selectedMedium.nombre}
-                  </button>
+                  </div>
                </>
             )}
          </div>
