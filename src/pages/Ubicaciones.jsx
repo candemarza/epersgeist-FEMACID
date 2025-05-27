@@ -1,6 +1,6 @@
 import "./css/GetAll.css";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState} from "react";
+import { useParams, useNavigate} from "react-router-dom";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";

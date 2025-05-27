@@ -32,11 +32,33 @@
    min-width: fit-content;
 }
 
+.choose-medium-card{
+   background-color: #3f3942;;
+   border-radius: 20px;
+}
+
+.selectedCard{
+   background-color: #6c4781;
+}
+
 .choose-medium-img {
-   height: 250px;
+   width: 190px;
+   height: 190px;
    background-color: white;
-   border: 2px solid black;
-   margin-bottom: 0.5rem;
+   border-radius: 20px 20px 0px 0px;
+   margin: 0;
+}
+
+.choose-medium-nombre {
+   text-align: center;
+   margin: 10px 0px 0px 0px;
+   padding: 0;
+
+}
+
+.choose-medium-mana {
+   text-align: center;
+   margin: 0px 0px 25px 0px;
 }
 
 .medium-list-wrapper::-webkit-scrollbar {
@@ -44,8 +66,8 @@
 }
 
 .scroll-arrow{
-    margin: 50px;
+    margin: 10px;
     cursor: pointer;
-    width: 30px;
-    font-size: 50px;
+    width: 70px;
+    height: 70px;
 }

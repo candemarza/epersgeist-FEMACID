@@ -4,6 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getMediumImg } from "../imageMappers/MediumsMapper";
 import GoBackButton from "../components/GoBackButton";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+
 
 const ConectarAMedium = () => {
    const params = useParams();
@@ -68,12 +71,12 @@ const ConectarAMedium = () => {
             ) : (
                <>
                   <div className="mediums-carrousel">
-                     <div
+                     <IoIosArrowBack
                         className="scroll-arrow"
                         onClick={() => scrollMediums(-1)}
                      >
                         ◀
-                     </div>
+                     </IoIosArrowBack>
                      <div className="medium-list-wrapper" ref={scrollRef}>
                         <div className="medium-list">
                            {mediumsAvailable.map((medium) => (
@@ -86,12 +89,12 @@ const ConectarAMedium = () => {
                            ))}
                         </div>
                      </div>
-                     <div
+                     <IoIosArrowForward
                         className="scroll-arrow"
                         onClick={() => scrollMediums(1)}
                      >
                         ▶
-                     </div>
+                     </IoIosArrowForward>
                   </div>
                   <button onClick={handleConectar}>
                      Conectar con {selectedMedium.nombre}

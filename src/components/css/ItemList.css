@@ -16,6 +16,7 @@
   border-radius: 10px;
   background-color: #3f3942;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .selected {
@@ -43,4 +44,21 @@
     font-size: 15px;
     font-weight: bold;
     margin-left: auto;
+}
+
+.items-list::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.items-list::-webkit-scrollbar-track {
+  background: #00000000;
+}
+
+.items-list::-webkit-scrollbar-thumb {
+  background: #514b53;
+  border-radius: 10px;
+}
+
+.items-list::-webkit-scrollbar-thumb:hover {
+  background: #605763;
 }
