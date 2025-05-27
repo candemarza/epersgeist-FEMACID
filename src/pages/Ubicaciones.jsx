@@ -1,12 +1,12 @@
 import "./css/GetAll.css";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
 import TipoToggle from "../components/TipoToggle";
-import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const Ubicaciones = () => {
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -20,11 +20,6 @@ const Ubicaciones = () => {
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
    const { id } = useParams();
-
-   const navigate = useNavigate();
-   const goHome = () => {
-      navigate(`/`);
-   };
 
    const handleSearch = (e) => {
       e.preventDefault();
@@ -78,57 +73,56 @@ const Ubicaciones = () => {
       setShowPopup(false);
    };
 
-   return ubicaciones.length === 0 ? (
+   return (
       <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAll-noItems">
-            <h2 className="getAll-noItems-title">
-               No hay ubicaciones disponibles :({" "}
-            </h2>
-            <p className="getAll-noItems-subtitle">
-               Prueba creando una ubicacion
-            </p>
-            <CreateButton onClick={handleShowCreatePopUp} />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshUbicaciones={refreshUbicaciones}
-            />
-         )}
-      </>
-   ) : (
-      <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAllContainer">
-            <div className="searchContainer">
-               <SearchBar
-                  search={search}
-                  setSearch={setSearch}
-                  handleSearch={handleSearch}
-               ></SearchBar>
-               <CreateButton onClick={handleShowCreatePopUp} />
-            </div>
-            <UbicacionesContent
-               ubicaciones={ubicaciones}
-               selectedUbicacion={selectedUbicacion}
-               setSelected={setSelected}
-               refreshUbicaciones={refreshUbicaciones}
-            />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshUbicaciones={refreshUbicaciones}
-            />
+         <GoBackButton />
+         {ubicaciones.length === 0 ? (
+            <>
+               <div className="getAll-noItems">
+                  <h2 className="getAll-noItems-title">
+                     No hay ubicaciones disponibles :(
+                  </h2>
+                  <p className="getAll-noItems-subtitle">
+                     Prueba creando una ubicacion
+                  </p>
+                  <CreateButton onClick={handleShowCreatePopUp} />
+               </div>
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshUbicaciones={refreshUbicaciones}
+                  />
+               )}
+            </>
+         ) : (
+            <>
+               <div className="getAllContainer">
+                  <div className="searchContainer">
+                     <SearchBar
+                        search={search}
+                        setSearch={setSearch}
+                        handleSearch={handleSearch}
+                     />
+                     <CreateButton onClick={handleShowCreatePopUp} />
+                  </div>
+                  <UbicacionesContent
+                     ubicaciones={ubicaciones}
+                     selectedUbicacion={selectedUbicacion}
+                     setSelected={setSelected}
+                     refreshUbicaciones={refreshUbicaciones}
+                  />
+               </div>
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshUbicaciones={refreshUbicaciones}
+                  />
+               )}
+            </>
          )}
       </>
    );

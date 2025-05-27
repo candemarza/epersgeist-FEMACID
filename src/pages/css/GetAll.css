@@ -175,15 +175,6 @@
    margin-bottom: 20px;
 }
 
-.goBack {
-   padding: 10px;
-   border: none;
-   cursor: pointer;
-   font-size: 40px;
-   position: absolute;
-   top: 0px;
-}
-
 .error {
    color: rgb(255, 81, 81);
    font-size: 15px;

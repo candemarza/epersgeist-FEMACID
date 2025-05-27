@@ -57,3 +57,13 @@ select:focus,
 button:focus {
   outline: none;
 }
+
+.goBack {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}

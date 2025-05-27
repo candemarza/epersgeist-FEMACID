@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getMediumImg } from "../imageMappers/MediumsMapper";
-import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const ConectarAMedium = () => {
    const params = useParams();
@@ -46,9 +46,7 @@ const ConectarAMedium = () => {
 
    return (
       <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goBack} />
-         </div>
+        <GoBackButton/>
          <div className="conectar-espiritu">
             <h1 className="conectar-title">Elige a tu medium</h1>
             {mediumsAvailable.length === 0 ? (

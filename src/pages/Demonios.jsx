@@ -5,6 +5,7 @@ import API from "../service/api";
 import DemoniosContainer from "../components/Demonios/DemoniosContainer";
 import Pagination from "../components/Demonios/Pagination";
 import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const Demonios = () => {
    const [pageDTO, setPageDTO] = useState({
@@ -33,16 +34,9 @@ const Demonios = () => {
          .catch(console.log("malio sal"));
    };
 
-   const navigate = useNavigate();
-   const goHome = () => {
-      navigate(`/`);
-   };
-
    return (
       <>
-         <div className="goBack dem">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
+        <GoBackButton/>
          <div className="demonios">
             <div className="demonios-title-container">
                <h1 className="demonios-title">Bienvenides al infierno!</h1>

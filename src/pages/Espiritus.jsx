@@ -6,7 +6,7 @@ import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import EspiritusContent from "../components/Espiritus/EspiritusContent";
 import TipoToggle from "../components/TipoToggle";
-import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const Espiritus = () => {
    const [espiritus, setEspiritus] = useState([]);
@@ -37,10 +37,10 @@ const Espiritus = () => {
    };
 
    useEffect(() => {
-   API.getEspiritus().then((res) => {
-      setEspiritus(res.data);
-   });
-}, []);
+      API.getEspiritus().then((res) => {
+         setEspiritus(res.data);
+      });
+   }, []);
 
    useEffect(() => {
       if (espiritus.length > 0) {
@@ -73,57 +73,56 @@ const Espiritus = () => {
       setShowPopup(false);
    };
 
-   return espiritus.length === 0 ? (
+   return (
       <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAll-noItems">
-            <h2 className="getAll-noItems-title">
-               No hay espiritus disponibles :(
-            </h2>
-            <p className="getAll-noItems-subtitle">
-               Prueba creando un espiritu
-            </p>
-            <CreateButton onClick={handleShowCreatePopUp} />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshEspiritus={refreshEspiritus}
-            />
-         )}
-      </>
-   ) : (
-      <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAllContainer">
-            <div className="searchContainer">
-               <SearchBar
-                  search={search}
-                  setSearch={setSearch}
-                  handleSearch={handleSearch}
-               ></SearchBar>
-               <CreateButton onClick={handleShowCreatePopUp} />
-            </div>
-            <EspiritusContent
-               espiritus={espiritus}
-               selectedEspiritu={selectedEspiritu}
-               setSelected={setSelected}
-               refreshEspiritus={refreshEspiritus}
-            />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshEspiritus={refreshEspiritus}
-            />
+         <GoBackButton />
+         {espiritus.length === 0 ? (
+            <>
+               <div className="getAll-noItems">
+                  <h2 className="getAll-noItems-title">
+                     No hay espiritus disponibles :(
+                  </h2>
+                  <p className="getAll-noItems-subtitle">
+                     Prueba creando un espiritu
+                  </p>
+                  <CreateButton onClick={handleShowCreatePopUp} />
+               </div>
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshEspiritus={refreshEspiritus}
+                  />
+               )}
+            </>
+         ) : (
+            <>
+               <div className="getAllContainer">
+                  <div className="searchContainer">
+                     <SearchBar
+                        search={search}
+                        setSearch={setSearch}
+                        handleSearch={handleSearch}
+                     />
+                     <CreateButton onClick={handleShowCreatePopUp} />
+                  </div>
+                  <EspiritusContent
+                     espiritus={espiritus}
+                     selectedEspiritu={selectedEspiritu}
+                     setSelected={setSelected}
+                     refreshEspiritus={refreshEspiritus}
+                  />
+               </div>
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshEspiritus={refreshEspiritus}
+                  />
+               )}
+            </>
          )}
       </>
    );
@@ -188,7 +187,9 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
                      value={ubicacionID}
                      onChange={(e) => setUbicacionID(e.target.value)}
                   >
-                     <option className="select-option" value="">Selecciona una ubicación...</option>
+                     <option className="select-option" value="">
+                        Selecciona una ubicación...
+                     </option>
                      {ubicaciones.map((ubicacion) => (
                         <option key={ubicacion.id} value={ubicacion.id}>
                            {ubicacion.nombre}

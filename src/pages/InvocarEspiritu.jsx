@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getEspirituImg } from "../imageMappers/EspiritusMapper";
-import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const InvocarEspiritu = () => {
    const params = useParams();
@@ -51,9 +51,7 @@ const InvocarEspiritu = () => {
 
    return (
       <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goBack} />
-         </div>
+         <GoBackButton/>
          <div className="invocar-espiritu">
             <h1 className="invocar-title">Elige al espíritu a invocar</h1>
             {espiritusAvailable.length === 0 ? (

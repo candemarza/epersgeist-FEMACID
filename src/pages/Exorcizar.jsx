@@ -38,6 +38,12 @@ const Exorcizar = () => {
       );
    };
 
+   const angelesDe = (medium) => {
+        return medium.espiritus.filter(
+            (espiritu) => espiritu.tipo === "Angelical"
+        );
+    };
+
    const exorcizar = () => {
       API.exorcizar(mediumExorcista.id, selectedMedium.id).then(() => {
          alert(`Exorcizado a ${selectedMedium.nombre}`);

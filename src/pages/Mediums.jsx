@@ -5,7 +5,7 @@ import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import MediumContent from "../components/Medium/MediumContent";
-import { IoIosArrowBack } from "react-icons/io";
+import GoBackButton from "../components/GoBackButton";
 
 const Mediums = () => {
    const [mediums, setMediums] = useState([]);
@@ -14,11 +14,6 @@ const Mediums = () => {
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
-
-   const navigate = useNavigate();
-   const goHome = () => {
-      navigate(`/`);
-   };
 
    const handleSearch = (e) => {
       e.preventDefault();
@@ -36,12 +31,12 @@ const Mediums = () => {
    };
 
    useEffect(() => {
-   API.getMediums().then((res) => {
-      setMediums(res.data);
-   });
-}, []);
+      API.getMediums().then((res) => {
+         setMediums(res.data);
+      });
+   }, []);
 
-    useEffect(() => {
+   useEffect(() => {
       if (mediums.length > 0) {
          if (id) {
             const found = mediums.find((e) => String(e.id) === String(id));
@@ -57,13 +52,11 @@ const Mediums = () => {
       navigate(`/mediums/${mediums.id}`);
    };
 
-
    const refreshMediums = (selectedMedium = null) => {
-      API.getMediums()
-         .then((res) => {
-            setMediums(res.data);
-            setSelectedMedium(selectedMedium || res.data[0]);
-         });
+      API.getMediums().then((res) => {
+         setMediums(res.data);
+         setSelectedMedium(selectedMedium || res.data[0]);
+      });
    };
 
    const handleShowCreatePopUp = () => {
@@ -74,55 +67,54 @@ const Mediums = () => {
       setShowPopup(false);
    };
 
-   return mediums.length === 0 ? (
+   return (
       <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAll-noItems">
-            <h2 className="getAll-noItems-title">
-               No hay mediums disponibles :(
-            </h2>
-            <p className="getAll-noItems-subtitle">Prueba creando un medium</p>
-            <CreateButton onClick={handleShowCreatePopUp} />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshMediums={refreshMediums}
-            />
-         )}
-      </>
-   ) : (
-      <>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goHome} />
-         </div>
-         <div className="getAllContainer">
-            <div className="searchContainer">
-               <SearchBar
-                  search={search}
-                  setSearch={setSearch}
-                  handleSearch={handleSearch}
-               ></SearchBar>
+         <GoBackButton />
+         {mediums.length === 0 ? (
+            <div className="getAll-noItems">
+               <h2 className="getAll-noItems-title">
+                  No hay mediums disponibles :(
+               </h2>
+               <p className="getAll-noItems-subtitle">
+                  Prueba creando un medium
+               </p>
                <CreateButton onClick={handleShowCreatePopUp} />
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshMediums={refreshMediums}
+                  />
+               )}
             </div>
-            <MediumContent
-               mediums={mediums}
-               selectedMedium={selectedMedium}
-               setSelected={setSelected}
-               refreshMediums={refreshMediums}
-            />
-         </div>
-         {showPopup && (
-            <CreatePopUp
-               onCreate={handleCreate}
-               onCancel={() => setShowPopup(false)}
-               setSelected={setSelected}
-               refreshMediums={refreshMediums}
-            />
+         ) : (
+            <>
+               <div className="getAllContainer">
+                  <div className="searchContainer">
+                     <SearchBar
+                        search={search}
+                        setSearch={setSearch}
+                        handleSearch={handleSearch}
+                     />
+                     <CreateButton onClick={handleShowCreatePopUp} />
+                  </div>
+                  <MediumContent
+                     mediums={mediums}
+                     selectedMedium={selectedMedium}
+                     setSelected={setSelected}
+                     refreshMediums={refreshMediums}
+                  />
+               </div>
+               {showPopup && (
+                  <CreatePopUp
+                     onCreate={handleCreate}
+                     onCancel={() => setShowPopup(false)}
+                     setSelected={setSelected}
+                     refreshMediums={refreshMediums}
+                  />
+               )}
+            </>
          )}
       </>
    );
@@ -180,7 +172,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
             setSelected(res.data);
          })
          .catch(() => {
-             setError("Algo malio sal");
+            setError("Algo malio sal");
          });
    };
 
