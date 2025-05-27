@@ -48,7 +48,7 @@ const ConectarAMedium = () => {
 
    const scrollMediums = (direction) => {
       const container = scrollRef.current;
-      const scrollAmount = 20; // ajusta esto según el ancho de tus cards
+      const scrollAmount = 500;
 
       container.scrollBy({
          left: scrollAmount * direction,
@@ -67,30 +67,32 @@ const ConectarAMedium = () => {
                </div>
             ) : (
                <>
-                  <button
-                     className="scroll-arrow left"
-                     onClick={() => scrollMediums(-1)}
-                  >
-                     ◀
-                  </button>
-                  <div className="medium-list-wrapper" ref={scrollRef}>
-                     <div className="medium-list">
-                        {mediumsAvailable.map((medium) => (
-                           <ChooseMediumCard
-                              medium={medium}
-                              key={medium.id}
-                              selected={selectedMedium.id === medium.id}
-                              onClick={() => setSelected(medium)}
-                           />
-                        ))}
+                  <div className="mediums-carrousel">
+                     <div
+                        className="scroll-arrow"
+                        onClick={() => scrollMediums(-1)}
+                     >
+                        ◀
+                     </div>
+                     <div className="medium-list-wrapper" ref={scrollRef}>
+                        <div className="medium-list">
+                           {mediumsAvailable.map((medium) => (
+                              <ChooseMediumCard
+                                 medium={medium}
+                                 key={medium.id}
+                                 selected={selectedMedium.id === medium.id}
+                                 onClick={() => setSelected(medium)}
+                              />
+                           ))}
+                        </div>
+                     </div>
+                     <div
+                        className="scroll-arrow"
+                        onClick={() => scrollMediums(1)}
+                     >
+                        ▶
                      </div>
                   </div>
-                  <button
-                     className="scroll-arrow left"
-                     onClick={() => scrollMediums(1)}
-                  >
-                     ▶
-                  </button>
                   <button onClick={handleConectar}>
                      Conectar con {selectedMedium.nombre}
                   </button>

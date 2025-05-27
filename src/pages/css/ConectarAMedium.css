@@ -1,81 +1,51 @@
 .conectar-espiritu {
-  text-align: center;
-  padding: 2rem;
-  font-family: sans-serif;
-  max-width: 1000px; /* ajusta esto si quieres más o menos cards visibles */
-  margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100vw;
 }
 
 .conectar-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+   font-size: 60px;
+}
+
+.mediums-carrousel {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   margin: 0 auto;
 }
 
 .medium-list-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-  scrollbar-gutter: stable both-edges;
+   overflow-x: auto;
+   overflow-y: hidden;
+   max-width: 50%;
 }
 
 .medium-list {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  min-width: fit-content;
+   display: flex;
+   gap: 20px;
+   padding: 1rem 0;
+   scroll-snap-type: x mandatory;
+   scroll-behavior: smooth;
+   min-width: fit-content;
 }
 
-.medium-card {
-  flex: 0 0 180px; /* cada card ocupa 180px */
-  border: 2px solid black;
-  padding: 1rem 0.5rem;
-  scroll-snap-align: start;
-  text-align: center;
-  background: white;
-}
-
-.medium-card img {
-  width: 100%;
-  height: 150px;
-  background-color: white;
-  border: 2px solid black;
-  margin-bottom: 0.5rem;
-}
-
-.medium-card p {
-  margin: 0.2rem 0;
-  font-weight: bold;
-}
-
-.choose-medium-card{
-    
-}
-
-.choose-medium-img{
-    height: 250px;
-    background-color: white;
-    border: 2px solid black;
-    margin-bottom: 0.5rem;
+.choose-medium-img {
+   height: 250px;
+   background-color: white;
+   border: 2px solid black;
+   margin-bottom: 0.5rem;
 }
 
 .medium-list-wrapper::-webkit-scrollbar {
-  height: 10px; /* alto de la barra horizontal */
+   height: 0px;
 }
 
-.medium-list-wrapper::-webkit-scrollbar-track {
-  background: #ffffff17; /* color de fondo del track */
-  border-radius: 10px;
-}
-
-.medium-list-wrapper::-webkit-scrollbar-thumb {
-  background: #888; /* color del scroll */
-  border-radius: 10px;
-  border: 2px solid #f0f0f00e; /* espacio entre el thumb y el track */
-}
-
-.medium-list-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #000000; /* color al hacer hover */
+.scroll-arrow{
+    margin: 50px;
+    cursor: pointer;
+    width: 30px;
+    font-size: 50px;
 }
