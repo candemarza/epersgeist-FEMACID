@@ -1,5 +1,5 @@
-import "./css/ConectarEspiritus.css";
-import { useEffect, useState } from "react";
+import "./css/ConectarAMedium.css";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getMediumImg } from "../imageMappers/MediumsMapper";
@@ -44,9 +44,21 @@ const ConectarAMedium = () => {
          });
    };
 
+   const scrollRef = useRef();
+
+   const scrollMediums = (direction) => {
+      const container = scrollRef.current;
+      const scrollAmount = 20; // ajusta esto según el ancho de tus cards
+
+      container.scrollBy({
+         left: scrollAmount * direction,
+         behavior: "smooth",
+      });
+   };
+
    return (
       <>
-        <GoBackButton/>
+         <GoBackButton />
          <div className="conectar-espiritu">
             <h1 className="conectar-title">Elige a tu medium</h1>
             {mediumsAvailable.length === 0 ? (
@@ -55,16 +67,30 @@ const ConectarAMedium = () => {
                </div>
             ) : (
                <>
-                  <div className="medium-list">
-                     {mediumsAvailable.map((medium) => (
-                        <ChooseMediumCard
-                           medium={medium}
-                           key={medium.id}
-                           selected={selectedMedium.id === medium.id}
-                           onClick={() => setSelected(medium)}
-                        />
-                     ))}
+                  <button
+                     className="scroll-arrow left"
+                     onClick={() => scrollMediums(-1)}
+                  >
+                     ◀
+                  </button>
+                  <div className="medium-list-wrapper" ref={scrollRef}>
+                     <div className="medium-list">
+                        {mediumsAvailable.map((medium) => (
+                           <ChooseMediumCard
+                              medium={medium}
+                              key={medium.id}
+                              selected={selectedMedium.id === medium.id}
+                              onClick={() => setSelected(medium)}
+                           />
+                        ))}
+                     </div>
                   </div>
+                  <button
+                     className="scroll-arrow left"
+                     onClick={() => scrollMediums(1)}
+                  >
+                     ▶
+                  </button>
                   <button onClick={handleConectar}>
                      Conectar con {selectedMedium.nombre}
                   </button>
@@ -105,14 +131,13 @@ const ChooseMediumCard = ({ medium, selected, onClick }) => {
             className={`choose-medium-card ${selected ? "selectedCard" : ""}`}
             onClick={onClick}
          >
-            {!selected && <div className="choose-medium-notselected" />}
             <img
                className="choose-medium-img"
                src={mediumImg}
                alt={medium.nombre}
             />
             <h2 className="choose-medium-nombre">{medium.nombre}</h2>
-            <p className="choose-medium-mana">Mana actual: {medium.mana}</p>
+            <p className="choose-medium-mana">Mana: {medium.mana}</p>
          </div>
       </>
    );

@@ -6,7 +6,7 @@ import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
 import TipoToggle from "../components/TipoToggle";
-import GoBackButton from "../components/GoBackButton";
+import GoHomeButton from "../components/GoHomeButton.jsx";
 
 const Ubicaciones = () => {
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -75,7 +75,7 @@ const Ubicaciones = () => {
 
    return (
       <>
-         <GoBackButton />
+         <GoHomeButton />
          {ubicaciones.length === 0 ? (
             <>
                <div className="getAll-noItems">

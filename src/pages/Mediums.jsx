@@ -5,7 +5,7 @@ import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import MediumContent from "../components/Medium/MediumContent";
-import GoBackButton from "../components/GoBackButton";
+import GoHomeButton from "../components/GoHomeButton";
 
 const Mediums = () => {
    const [mediums, setMediums] = useState([]);
@@ -69,7 +69,7 @@ const Mediums = () => {
 
    return (
       <>
-         <GoBackButton />
+         <GoHomeButton />
          {mediums.length === 0 ? (
             <div className="getAll-noItems">
                <h2 className="getAll-noItems-title">

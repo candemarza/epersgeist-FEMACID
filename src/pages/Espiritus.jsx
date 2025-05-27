@@ -1,12 +1,12 @@
 import "./css/GetAll.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../service/api";
 import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import EspiritusContent from "../components/Espiritus/EspiritusContent";
 import TipoToggle from "../components/TipoToggle";
-import GoBackButton from "../components/GoBackButton";
+import GoHomeButton from "../components/GoHomeButton";
 
 const Espiritus = () => {
    const [espiritus, setEspiritus] = useState([]);
@@ -15,11 +15,6 @@ const Espiritus = () => {
 
    const [search, setSearch] = useState("");
    const [showPopup, setShowPopup] = useState(false);
-
-   const navigate = useNavigate();
-   const goHome = () => {
-      navigate(`/`);
-   };
 
    const handleSearch = (e) => {
       e.preventDefault();
@@ -75,7 +70,7 @@ const Espiritus = () => {
 
    return (
       <>
-         <GoBackButton />
+         <GoHomeButton/>
          {espiritus.length === 0 ? (
             <>
                <div className="getAll-noItems">
