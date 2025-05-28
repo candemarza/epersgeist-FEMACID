@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import API from "../service/api";
+import PopUpExorcismo from "../components/PopUpExorcismo";
 
 const Exorcizar = () => {
    const { id } = useParams();
    const [mediumExorcista, setMediumExorcista] = useState({});
    const [mediums, setMediums] = useState([]);
    const [selectedMedium, setSelectedMedium] = useState({});
+   const [showPopup, setShowPopup] = useState(false);
 
    const navigate = useNavigate();
    const goBack = () => {
@@ -39,31 +41,21 @@ const Exorcizar = () => {
    };
 
    const angelesDe = (medium) => {
-        return medium.espiritus.filter(
-            (espiritu) => espiritu.tipo === "Angelical"
-        );
-    };
+      return medium.espiritus.filter(
+         (espiritu) => espiritu.tipo === "Angelical"
+      );
+   };
 
    const exorcizar = () => {
       API.exorcizar(mediumExorcista.id, selectedMedium.id).then(() => {
-         alert(`Exorcizado a ${selectedMedium.nombre}`);
-         //en realidad deberia chequear si el medium a exorcizar
-         //se quedo sin demonios, decir exitoso
-         //se quedo con menso demonios, semi exitoso
-         //se quedo con el mismo numero de demonios, decir que no se pudo exorcizar
-         //si yo perdi angeles, decir que perdi algun angel
-         //si perdi todos deci que cagamos las peras
-         //uno no dice que lo otro no pasar es un case of para cada cosa?
-
-         //si sigo teniendo angles, y el exorcizado sigue teniendo demoniso preguntar si quiero de nuevo
-         //si tengo angeles y el exorcizado no tiene demonios, hacer un refresh de la lista, y decir queres exorcizar a otro?
+         setShowPopup(true);
       });
    };
 
    return (
       <div>
-        <div className="goBack">
-                    <IoIosArrowBack onClick={goBack} />
+         <div className="goBack">
+            <IoIosArrowBack onClick={goBack} />
          </div>
          <h1 className="exorcizar-title">Elige al medium a exorcizar</h1>
          {mediums.length === 0 ? (
@@ -92,8 +84,18 @@ const Exorcizar = () => {
                </button>
             </>
          )}
+         {showPopup && (
+            <PopUpExorcismo
+               IDmediumExorcista={mediumExorcista.id}
+               angelesExorcistas={angelesDe(mediumExorcista)}
+               IDmediumExorcizado={selectedMedium.id}
+               demoniosExorcizados={demoniosDe(selectedMedium)}
+            />
+         )}
       </div>
    );
 };
+
+
 
 export default Exorcizar;
