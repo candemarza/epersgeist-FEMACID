@@ -165,22 +165,22 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
    return (
       <div className="popup-overlay">
          <div className="popup-create">
-            <h2 className="create-title">Crear nuevo espiritu</h2>
-            <div className="create-inputs">
-               <div className="create-input-container">
-                  <p className="create-input-label">Nombre</p>
+            <h2 className="popup-title">Crear nuevo espiritu</h2>
+            <div className="popup-inputs">
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Nombre</p>
                   <input
                      type="text"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Nombre del espiritu..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
                </div>
-               <div className="create-input-container">
-                  <p className="create-input-label">Ubicación</p>
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Ubicación</p>
                   <select
-                     className="create-input select"
+                     className="popup-input select"
                      value={ubicacionID}
                      onChange={(e) => setUbicacionID(e.target.value)}
                   >

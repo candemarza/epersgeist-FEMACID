@@ -34,6 +34,19 @@ const Exorcizar = () => {
       });
    }, [id]);
 
+   const onRefresh = () => {
+   API.getMediums().then((response) => {
+      const filtered = response.data.filter(
+         (medium) =>
+            medium.ubicacion.nombre === mediumExorcista.ubicacion.nombre &&
+            medium.id !== mediumExorcista.id &&
+            demoniosDe(medium).length > 0
+      );
+      setMediums(filtered);
+      setSelectedMedium(filtered[0]);
+   });
+ };
+
    const demoniosDe = (medium) => {
       return medium.espiritus.filter(
          (espiritu) => espiritu.tipo === "Demoniaco"
@@ -51,6 +64,7 @@ const Exorcizar = () => {
          setShowPopup(true);
       });
    };
+
 
    return (
       <div>
@@ -90,6 +104,8 @@ const Exorcizar = () => {
                angelesExorcistas={angelesDe(mediumExorcista)}
                IDmediumExorcizado={selectedMedium.id}
                demoniosExorcizados={demoniosDe(selectedMedium)}
+               onClose={() => setShowPopup(false)}
+               onRefresh={onRefresh}
             />
          )}
       </div>

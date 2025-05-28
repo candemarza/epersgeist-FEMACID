@@ -180,23 +180,23 @@ const CreatePopUp = ({
    return (
       <div className="popup-overlay">
          <div className="popup-create">
-            <h2 className="create-title">Crear nueva ubicacion</h2>
-            <div className="create-inputs">
-               <div className="create-input-container">
-                  <p className="create-input-label">Nombre</p>
+            <h2 className="popup-title">Crear nueva ubicacion</h2>
+            <div className="popup-inputs">
+               <div className="popup-input-container">
+                  <p className="crpopupeate-input-label">Nombre</p>
                   <input
                      type="text"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Nombre de la ubicacion..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
                </div>
-               <div className="create-input-container">
-                  <p className="create-input-label">Flujo de energía</p>
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Flujo de energía</p>
                   <input
                      type="number"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Flujo de energia..."
                      value={flujoDeEnergia}
                      onChange={(e) => setFlujoDeEnergia(e.target.value)}

@@ -72,14 +72,16 @@ const Mediums = () => {
       <>
          <GoHomeButton />
          {mediums.length === 0 ? (
-            <div className="getAll-noItems">
-               <h2 className="getAll-noItems-title">
-                  No hay mediums disponibles :(
-               </h2>
-               <p className="getAll-noItems-subtitle">
-                  Prueba creando un medium
-               </p>
-               <CreateButton onClick={handleShowCreatePopUp} />
+            <>
+               <div className="getAll-noItems">
+                  <h2 className="getAll-noItems-title">
+                     No hay mediums disponibles :(
+                  </h2>
+                  <p className="getAll-noItems-subtitle">
+                     Prueba creando un medium
+                  </p>
+                  <CreateButton onClick={handleShowCreatePopUp} />
+               </div>
                {showPopup && (
                   <CreatePopUp
                      onCreate={handleCreate}
@@ -88,7 +90,7 @@ const Mediums = () => {
                      refreshMediums={refreshMediums}
                   />
                )}
-            </div>
+            </>
          ) : (
             <>
                <div className="getAllContainer">
@@ -180,22 +182,22 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
    return (
       <div className="popup-overlay">
          <div className="popup-create">
-            <h2 className="create-title">Crear nuevo medium</h2>
-            <div className="create-inputs">
-               <div className="create-input-container">
-                  <p className="create-input-label">Nombre</p>
+            <h2 className="popup-title">Crear nuevo medium</h2>
+            <div className="popup-inputs">
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Nombre</p>
                   <input
                      type="text"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Nombre del medium..."
                      value={nombre}
                      onChange={(e) => setNombre(e.target.value)}
                   />
                </div>
-               <div className="create-input-container">
-                  <p className="create-input-label">Ubicación</p>
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Ubicación</p>
                   <select
-                     className="create-input"
+                     className="popup-input"
                      value={ubicacionID}
                      onChange={(e) => setUbicacionID(e.target.value)}
                   >
@@ -208,22 +210,22 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
                   </select>
                </div>
             </div>
-            <div className="create-inputs">
-               <div className="create-input-container">
-                  <p className="create-input-label">Mana Max</p>
+            <div className="popup-inputs">
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Mana Max</p>
                   <input
                      type="text"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Mana Maximo del medium..."
                      value={manaMax}
                      onChange={(e) => setManaMax(e.target.value)}
                   />
                </div>
-               <div className="create-input-container">
-                  <p className="create-input-label">Mana</p>
+               <div className="popup-input-container">
+                  <p className="popup-input-label">Mana</p>
                   <input
                      type="text"
-                     className="create-input"
+                     className="popup-input"
                      placeholder="Mana del medium..."
                      value={mana}
                      onChange={(e) => setMana(e.target.value)}
