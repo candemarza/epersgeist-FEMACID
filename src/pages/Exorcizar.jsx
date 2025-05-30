@@ -1,9 +1,12 @@
 import "./css/Exorcizar.css";
+import "../components/css/MediumCard.css";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+import { useParams } from "react-router-dom";
 import API from "../service/api";
+import { getMediumImg } from "../imageMappers/MediumsMapper";
 import PopUpExorcismo from "../components/PopUpExorcismo";
+import Carousel from "../components/Carousel";
+import GoBackButton from "../components/GoBackButton";
 
 const Exorcizar = () => {
    const { id } = useParams();
@@ -11,11 +14,6 @@ const Exorcizar = () => {
    const [mediums, setMediums] = useState([]);
    const [selectedMedium, setSelectedMedium] = useState({});
    const [showPopup, setShowPopup] = useState(false);
-
-   const navigate = useNavigate();
-   const goBack = () => {
-      navigate(-1);
-   };
 
    useEffect(() => {
       API.getMediumById(id).then((res) => {
@@ -35,17 +33,17 @@ const Exorcizar = () => {
    }, [id]);
 
    const onRefresh = () => {
-   API.getMediums().then((response) => {
-      const filtered = response.data.filter(
-         (medium) =>
-            medium.ubicacion.nombre === mediumExorcista.ubicacion.nombre &&
-            medium.id !== mediumExorcista.id &&
-            demoniosDe(medium).length > 0
-      );
-      setMediums(filtered);
-      setSelectedMedium(filtered[0]);
-   });
- };
+      API.getMediums().then((response) => {
+         const filtered = response.data.filter(
+            (medium) =>
+               medium.ubicacion.nombre === mediumExorcista.ubicacion.nombre &&
+               medium.id !== mediumExorcista.id &&
+               demoniosDe(medium).length > 0
+         );
+         setMediums(filtered);
+         setSelectedMedium(filtered[0]);
+      });
+   };
 
    const demoniosDe = (medium) => {
       return medium.espiritus.filter(
@@ -65,12 +63,9 @@ const Exorcizar = () => {
       });
    };
 
-
    return (
       <div>
-         <div className="goBack">
-            <IoIosArrowBack onClick={goBack} />
-         </div>
+        <GoBackButton />
          <h1 className="exorcizar-title">Elige al medium a exorcizar</h1>
          {mediums.length === 0 ? (
             <div className="no-mediums">
@@ -78,21 +73,21 @@ const Exorcizar = () => {
             </div>
          ) : (
             <>
-               <div className="medium-list">
-                  {mediums.map((medium) => (
-                     <div
-                        key={medium.id}
-                        className={`medium-item ${
-                           selectedMedium.id === medium.id ? "selected" : ""
-                        }`}
-                        onClick={() => setSelectedMedium(medium)}
-                     >
-                        <h2>{medium.nombre}</h2>
-                        <h2>Mana: {medium.mana}</h2>
-                        <h2>Demonios: {demoniosDe(medium).length}</h2>
-                     </div>
-                  ))}
-               </div>
+               <Carousel
+                  items={mediums}
+                  selected={selectedMedium}
+                  setSelected={setSelectedMedium}
+                  renderItem={({ item, selected, onClick }) => (
+                     <ChooseExorcizarCard
+                        medium={item}
+                        key={item.id}
+                        selected={selected}
+                        onClick={onClick}
+                        demonios={demoniosDe(item).length}
+
+                     />
+                  )}
+               />
                <button onClick={exorcizar}>
                   Exorcizar a {selectedMedium.nombre}
                </button>
@@ -112,6 +107,25 @@ const Exorcizar = () => {
    );
 };
 
+const ChooseExorcizarCard = ({ medium, selected, onClick, demonios }) => {
+   const mediumImg = getMediumImg(medium.nombre);
 
+   return (
+      <div
+         key={medium.id}
+         className={`choose-medium-card ${selected ? "selectedCard" : ""}`}
+         onClick={onClick}
+      >
+         <img
+            className="choose-medium-img"
+            src={mediumImg}
+            alt={medium.nombre}
+         />
+         <h2 className="choose-medium-nombre">{medium.nombre}</h2>
+         <h2 className="choose-medium-mana">Mana: {medium.mana}</h2>
+         <h2 className="choose-medium-espiritus">Demonios: {demonios}</h2>
+      </div>
+   );
+};
 
 export default Exorcizar;

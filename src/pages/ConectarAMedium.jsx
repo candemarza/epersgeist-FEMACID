@@ -1,12 +1,11 @@
 import "./css/ConectarAMedium.css";
-import { useEffect, useState, useRef } from "react";
+import "../components/css/MediumCard.css";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getMediumImg } from "../imageMappers/MediumsMapper";
 import GoBackButton from "../components/GoBackButton";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-
+import Carousel from "../components/Carousel";
 
 const ConectarAMedium = () => {
    const params = useParams();
@@ -47,18 +46,6 @@ const ConectarAMedium = () => {
          });
    };
 
-   const scrollRef = useRef();
-
-   const scrollMediums = (direction) => {
-      const container = scrollRef.current;
-      const scrollAmount = 800;
-
-      container.scrollBy({
-         left: scrollAmount * direction,
-         behavior: "smooth",
-      });
-   };
-
    return (
       <>
          <GoBackButton />
@@ -70,53 +57,40 @@ const ConectarAMedium = () => {
                </div>
             ) : (
                <>
-                  <div className="mediums-carrousel">
-                     <IoIosArrowBack
-                        className="scroll-arrow"
-                        onClick={() => scrollMediums(-1)}
-                     >
-                        ◀
-                     </IoIosArrowBack>
-                     <div className="medium-list-wrapper" ref={scrollRef}>
-                        <div className="medium-list">
-                           {mediumsAvailable.map((medium) => (
-                              <ChooseMediumCard
-                                 medium={medium}
-                                 key={medium.id}
-                                 selected={selectedMedium.id === medium.id}
-                                 onClick={() => setSelected(medium)}
-                              />
-                           ))}
-                        </div>
-                     </div>
-                     <IoIosArrowForward
-                        className="scroll-arrow"
-                        onClick={() => scrollMediums(1)}
-                     >
-                        ▶
-                     </IoIosArrowForward>
-                  </div>
-                  <div onClick={handleConectar}
-                     className="conectar-button">
+                  <Carousel
+                     items={mediumsAvailable}
+                     selected={selectedMedium}
+                     setSelected={setSelected}
+                     renderItem={({ item, selected, onClick }) => (
+                        <ChooseMediumCard
+                           medium={item}
+                           key={item.id}
+                           selected={selected}
+                           onClick={onClick}
+                           espiritus={item.espiritus.length}
+                        />
+                     )}
+                  />
+                  <div onClick={handleConectar} className="conectar-button">
                      Conectar con {selectedMedium.nombre}
                   </div>
                </>
             )}
          </div>
          {showPopupSuccess && (
-            <div className="popup">
-               <div className="popup-content">
-                  <h2>Conexión exitosa!!</h2>
-                  <p>Te conectaste con {selectedMedium.nombre}</p>
+            <div className="popup-overlay">
+               <div className="popup-create">
+                  <h2 className="popup-title">Conexión exitosa!!</h2>
+                  <p className="popup-subtitle">Te conectaste con {selectedMedium.nombre}</p>
                   <button onClick={goBack}>Volver</button>
                </div>
             </div>
          )}
          {showPopupError && (
-            <div className="popup">
-               <div className="popup-content">
-                  <h2>Error al conectar con medium</h2>
-                  <p>{selectedMedium.nombre} tiene mucho flow B)</p>
+            <div className="popup-overlay">
+               <div className="popup-create">
+                  <h2 className="popup-title">Error al conectar con medium</h2>
+                  <p className="popup-subtitle">{selectedMedium.nombre} tiene mucho flow B)</p>
                   <button onClick={() => setShowPopupError(false)}>
                      Intentar con otro medium
                   </button>
@@ -128,7 +102,7 @@ const ConectarAMedium = () => {
    );
 };
 
-const ChooseMediumCard = ({ medium, selected, onClick }) => {
+const ChooseMediumCard = ({ medium, selected, onClick, espiritus }) => {
    const mediumImg = getMediumImg(medium.nombre);
 
    return (
@@ -143,7 +117,9 @@ const ChooseMediumCard = ({ medium, selected, onClick }) => {
                alt={medium.nombre}
             />
             <h2 className="choose-medium-nombre">{medium.nombre}</h2>
-            <p className="choose-medium-mana">Mana: {medium.mana}</p>
+            <h2 className="choose-medium-mana">Mana: {medium.mana}</h2>
+            <h2 className="choose-medium-espiritus">
+               Espíritus : {espiritus} </h2>
          </div>
       </>
    );

@@ -1,9 +1,11 @@
 import "./css/InvocarEspiritu.css";
+import "../components/css/EspirituCard.css";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../service/api";
 import { getEspirituImg } from "../imageMappers/EspiritusMapper";
 import GoBackButton from "../components/GoBackButton";
+import Carousel from "../components/Carousel";
 
 const InvocarEspiritu = () => {
    const params = useParams();
@@ -51,7 +53,7 @@ const InvocarEspiritu = () => {
 
    return (
       <>
-         <GoBackButton/>
+         <GoBackButton />
          <div className="invocar-espiritu">
             <h1 className="invocar-title">Elige al espíritu a invocar</h1>
             {espiritusAvailable.length === 0 ? (
@@ -60,16 +62,19 @@ const InvocarEspiritu = () => {
                </div>
             ) : (
                <>
-                  <div className="espiritu-list">
-                     {espiritusAvailable.map((espiritu) => (
+                  <Carousel
+                     items={espiritusAvailable}
+                     selected={selectedEspiritu}
+                     setSelected={setSelectedEspiritu}
+                     renderItem={({ item, selected, onClick }) => (
                         <ChooseEspirituCard
-                           espiritu={espiritu}
-                           key={espiritu.id}
-                           selected={selectedEspiritu?.id === espiritu.id}
-                           onClick={() => setSelected(espiritu)}
+                           espiritu={item}
+                           key={item.id}
+                           selected={selected}
+                           onClick={onClick}
                         />
-                     ))}
-                  </div>
+                     )}
+                  />
                   <button onClick={handleInvocar}>
                      Invocar a {selectedEspiritu?.nombre}
                   </button>
@@ -77,10 +82,10 @@ const InvocarEspiritu = () => {
             )}
          </div>
          {showPopupSuccess && (
-            <div className="popup">
-               <div className="popup-content">
-                  <h2>¡Invocación exitosa!</h2>
-                  <p>
+            <div className="popup-overlay">
+               <div className="popup-create">
+                  <h2 className="popup-title">¡Invocación exitosa!</h2>
+                  <p className="popup-subtitle">
                      Invocaste a {selectedEspiritu?.nombre} con {medium?.nombre}
                   </p>
                   <button onClick={goBack}>Volver</button>
@@ -88,10 +93,10 @@ const InvocarEspiritu = () => {
             </div>
          )}
          {showPopupError && (
-            <div className="popup">
-               <div className="popup-content">
-                  <h2>Error al invocar espíritu</h2>
-                  <p>{selectedEspiritu?.nombre} no pudo ser invocado.</p>
+            <div className="popup-overlay">
+               <div className="popup-create">
+                  <h2 className="popup-title" > Error al invocar espíritu</h2>
+                  <p className="popup-subtitle">{selectedEspiritu?.nombre} no pudo ser invocado.</p>
                   <button onClick={() => setShowPopupError(false)}>
                      Intentar con otro espíritu
                   </button>
@@ -111,7 +116,6 @@ const ChooseEspirituCard = ({ espiritu, selected, onClick }) => {
          className={`choose-espiritu-card ${selected ? "selectedCard" : ""}`}
          onClick={onClick}
       >
-         {!selected && <div className="choose-espiritu-notselected" />}
          <img
             className="choose-espiritu-img"
             src={espirituImg}
@@ -119,7 +123,6 @@ const ChooseEspirituCard = ({ espiritu, selected, onClick }) => {
          />
          <h2 className="choose-espiritu-nombre">{espiritu.nombre}</h2>
          <p className="choose-espiritu-tipo">{espiritu.tipo}</p>
-         <p>{espiritu.id}</p>
       </div>
    );
 };
