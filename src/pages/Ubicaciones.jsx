@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 import UbicacionesContent from "../components/Ubicacion/UbicacionesContent";
 import TipoToggle from "../components/TipoToggle";
 import GoHomeButton from "../components/GoHomeButton.jsx";
+import CoordenadasCreator from "../components/CoordenadasCreator.jsx";
 
 const Ubicaciones = () => {
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -138,6 +139,7 @@ const CreatePopUp = ({
    const [nombre, setNombre] = useState("");
    const [flujoDeEnergia, setFlujoDeEnergia] = useState("");
    const [tipo, setTipo] = useState("Cementerio");
+   const [coordenadas, setCoordenadas] = useState([]);
    const [error, setError] = useState("");
 
    const handleCreate = async () => {
@@ -159,11 +161,16 @@ const CreatePopUp = ({
          setError("El flujo de energía no puede ser mayor a 100.");
          return;
       }
+      if (coordenadas.length < 3) {
+        setError("Debes agregar al menos 3 coordenadas.");
+        return;
+    }
 
       const ubicacionBodyDTO = {
          nombre,
          flujoDeEnergia: flujoNum,
          tipo,
+         coordenadas,
       };
 
       API.createUbicacion(ubicacionBodyDTO)
@@ -208,6 +215,7 @@ const CreatePopUp = ({
                setTipo={setTipo}
                opciones={["Cementerio", "Santuario"]}
             />
+            <CoordenadasCreator coordenadas={coordenadas} setCoordenadas={setCoordenadas} />
             {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
