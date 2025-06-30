@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 import EspiritusContent from "../components/Espiritus/EspiritusContent";
 import TipoToggle from "../components/TipoToggle";
 import GoHomeButton from "../components/GoHomeButton";
+import CoordenadaInput from "../components/CoordenadaInput";
 
 const Espiritus = () => {
    const [espiritus, setEspiritus] = useState([]);
@@ -129,6 +130,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
    const [nombre, setNombre] = useState("");
    const [ubicacionID, setUbicacionID] = useState("");
    const [tipo, setTipo] = useState("Demoniaco");
+   const [coordenada, setCoordenada] = useState({ latitud: "", longitud: "" });
    const [error, setError] = useState("");
 
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -144,11 +146,16 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
          setError("Por favor complete todos los campos.");
          return;
       }
+      if (isNaN(coordenada.latitud) || isNaN(coordenada.longitud)) {
+         setError("Pedazo de hdp, las coordenadas deben ser números.");
+         return;
+      }
 
       const espirituBodyDTO = {
          nombre,
          ubicacionID,
          tipo,
+         coordenada
       };
 
       API.createEspiritu(espirituBodyDTO)
@@ -200,6 +207,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshEspiritus, setSelected }) => {
                setTipo={setTipo}
                opciones={["Demoniaco", "Angelical"]}
             />
+            <CoordenadaInput coordenada={coordenada} setCoordenada={setCoordenada} />
             {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>

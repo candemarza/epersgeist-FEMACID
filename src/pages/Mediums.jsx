@@ -6,6 +6,7 @@ import CreateButton from "../components/CreateButton";
 import SearchBar from "../components/SearchBar";
 import MediumContent from "../components/Medium/MediumContent";
 import GoHomeButton from "../components/GoHomeButton";
+import CoordenadaInput from "../components/CoordenadaInput";
 
 const Mediums = () => {
    const [mediums, setMediums] = useState([]);
@@ -128,6 +129,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
    const [ubicacionID, setUbicacionID] = useState("");
    const [mana, setMana] = useState("");
    const [manaMax, setManaMax] = useState("");
+   const [coordenada, setCoordenada] = useState({ latitud: "", longitud: "" });
    const [error, setError] = useState("");
 
    const [ubicaciones, setUbicaciones] = useState([]);
@@ -139,12 +141,16 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
    }, []);
 
    const handleCreate = () => {
-      if (!nombre.trim() || !ubicacionID || !mana || !manaMax) {
+      if (!nombre.trim() || !ubicacionID || !mana || !manaMax || !coordenada.latitud || !coordenada.longitud) {
          setError("Por favor complete todos los campos.");
          return;
       }
       if (isNaN(mana) || isNaN(manaMax)) {
          setError("Pedazo de hdp, Mana y Mana Max deben ser números.");
+         return;
+      }
+      if (isNaN(coordenada.latitud) || isNaN(coordenada.longitud)) {
+         setError("Pedazo de hdp, las coordenadas deben ser números.");
          return;
       }
       if (Number(mana) > Number(manaMax)) {
@@ -166,6 +172,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
          mana,
          manaMax,
          ubicacionID,
+         coordenada,
       };
 
       API.createMedium(mediumBodyDTO)
@@ -232,6 +239,7 @@ const CreatePopUp = ({ onCreate, onCancel, refreshMediums, setSelected }) => {
                   />
                </div>
             </div>
+            <CoordenadaInput coordenada={coordenada} setCoordenada={setCoordenada} />
             {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
                <button className="popup-button cancel" onClick={onCancel}>
