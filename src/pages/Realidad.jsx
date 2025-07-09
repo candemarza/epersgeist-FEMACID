@@ -37,6 +37,13 @@ const Realidad = () => {
       API.getRealidadById(id)
          .then((res) => {
             setRealidad(res.data);
+            API.getCorrupcion(id)
+               .then((res) => {
+               setCorrupcion(res.data);
+            })
+            .catch((error) => {
+               console.error("Error fetching corrupcion:", error);
+            });
          })
          .catch((error) => {
             console.error("Error refreshing realidad:", error);
@@ -47,6 +54,10 @@ const Realidad = () => {
     const simularDominacion = () => {
         setShowPopup(!showPopup);
     };
+
+   const handleCancel = () => {
+      setShowPopup(false);
+   };
 
    return (
       <div className="realidad-container">
@@ -121,6 +132,7 @@ const Realidad = () => {
                espiritus={realidad ? realidad.espiritus : []}
                realidadId={id}
                refreshRealidad={refreshRealidad}
+               onCancel={handleCancel}
             />
          )}
       </div>
@@ -138,7 +150,7 @@ const WhatIfEngine = ({ espiritus, realidadId, refreshRealidad, onCancel }) => {
             return;
         }
         if (selectedDominanteID === selectedDominadoID) {
-            setError("No bancamos la autominacion che");
+            setError("No bancamos la autodominacion che");
             return;
         }
 
@@ -152,6 +164,10 @@ const WhatIfEngine = ({ espiritus, realidadId, refreshRealidad, onCancel }) => {
                 setError("malio sal");
             });
     }
+
+      const handleCancel = () => {
+         onCancel();
+      }
 
    return (
       <div className="popup-overlay">
@@ -172,7 +188,7 @@ const WhatIfEngine = ({ espiritus, realidadId, refreshRealidad, onCancel }) => {
                         Selecciona un espíritu dominante...
                      </option>
                      {espiritus.map((espiritu) => (
-                        <option key={espiritu.id} value={espiritu.id}>
+                        <option key={espiritu.idSQL} value={espiritu.idSQL}>
                            {espiritu.nombre}
                         </option>
                      ))}
@@ -189,7 +205,7 @@ const WhatIfEngine = ({ espiritus, realidadId, refreshRealidad, onCancel }) => {
                         Selecciona un espíritu dominado...
                      </option>
                      {espiritus.map((espiritu) => (
-                        <option key={espiritu.id} value={espiritu.id}>
+                        <option key={espiritu.idSQL} value={espiritu.idSQL}>
                            {espiritu.nombre}
                         </option>
                      ))}
@@ -198,7 +214,7 @@ const WhatIfEngine = ({ espiritus, realidadId, refreshRealidad, onCancel }) => {
             </div>
             {error && <div className="error">{error}</div>}
             <div className="popup-buttons">
-               <button className="popup-button cancel" onClick={onCancel}>
+               <button className="popup-button cancel" onClick={handleCancel}>
                   Cancelar
                </button>
                <button className="popup-button confirm" onClick={handleDominacion}>
