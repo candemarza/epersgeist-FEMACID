@@ -9,6 +9,8 @@ import Demonios from "./pages/Demonios";
 import ConectarAMedium from "./pages/ConectarAMedium";
 import InvocarEspiritu from "./pages/InvocarEspiritu";
 import Exorcizar from "./pages/Exorcizar";
+import Realidades from "./pages/Realidades";
+import Realidad from "./pages/Realidad";
 
 function App() {
    const audioRef = useRef(null);
@@ -25,6 +27,11 @@ function App() {
             <Route path="/ubicaciones" element={<Outlet />}>
                <Route index element={<Ubicaciones />} />
                <Route path=":id" element={<Ubicaciones />} />
+            </Route>
+
+            <Route path="/realidadesParalelas" element={<Outlet />}>
+               <Route index element={<Realidades />} />
+               <Route path=":id" element={<Realidad />} />
             </Route>
 
             <Route path="/espiritus" element={<Outlet />}>

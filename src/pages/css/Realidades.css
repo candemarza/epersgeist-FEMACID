@@ -1,0 +1,226 @@
+.realidades-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   padding: 20px;
+}
+.realidad-card {
+   background-color: #6c4781;
+   border-radius: 8px;
+   padding: 20px;
+   margin: 10px;
+   cursor: pointer;
+   transition: transform 0.2s, box-shadow 0.2s;
+   text-align: center;
+}
+
+.realidad-card:hover {
+   transform: scale(1.03);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.realidad-card-title {
+   width: 200px;
+   font-size: 1.5em;
+   margin: 0;
+}
+.realidad-card-id {
+   font-size: 1.5em;
+   margin: 0;
+}
+
+/* realidad */
+
+.realidad-container {
+   width: 100vw;
+   margin: 0 auto;
+}
+
+.realidad-title {
+   text-align: center;
+   margin-bottom: 32px;
+   font-size: 2.2rem;
+   letter-spacing: 1px;
+}
+
+.realidad-content {
+   display: flex;
+   gap: 20px;
+   align-items: flex-start;
+   justify-content: space-between;
+   padding: 0px 20px;
+
+}
+
+.realidad-espiritus {
+   border-radius: 12px;
+   min-width: 0;
+   width: 300px;
+}
+
+.realidad-timeline {
+   border-radius: 12px;
+   padding: 24px 20px;
+   min-width: 0;
+   width: 50%;
+}
+
+.realidad-info {
+   display: flex;
+   flex-direction: column;
+   border-radius: 12px;
+   min-width: 0;
+   width: 300px;
+   align-items: center;
+}
+
+.realidad-corrupcion {
+   display: flex;
+   flex-direction: column;
+   border-radius: 12px;
+   min-width: 0;
+   width: 300px;
+   align-items: center;
+}
+
+.realidad-what-if-engine{
+    border-radius: 12px;
+    min-width: 0;
+    width: 300px;
+    align-items: center;
+    background-color: #3f3942;
+}
+
+/*line del tiempo*/
+
+.timeline-vertical-container {
+   position: relative;
+   padding: 32px 0;
+   min-height: 300px;
+}
+
+.timeline-vertical-line {
+   position: absolute;
+   left: 50%;
+   top: 0;
+   bottom: 0;
+   width: 4px;
+   background: #ffffff;
+   border-radius: 2px;
+}
+
+.timeline-event-row {
+   position: relative;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   margin: 32px 0;
+}
+
+.evento-espiritu {
+   font-weight: bold;
+}
+
+.left {
+   justify-content: flex-start;
+   left: 0px;
+}
+
+.right {
+   justify-content: flex-end;
+}
+
+.timeline-event-dot {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 18px;
+   height: 18px;
+   background: #fff;
+   border: 4px solid #888;
+   border-radius: 50%;
+   margin: 30p;
+}
+
+.timeline-event-card {
+   width: 220px;
+   background: #23232b;
+   color: #fff;
+   border-radius: 8px;
+   padding: 12px 16px;
+   box-shadow: 0 2px 12px #0007;
+   position: relative;
+   border: 2px solid #888;
+}
+
+.left .timeline-event-card {
+   margin-left: 60px;
+   margin-right: 0;
+   text-align: left;
+}
+
+.right .timeline-event-card {
+   margin-right: 60px;
+   margin-left: 0;
+   text-align: right;
+}
+
+.trigger {
+   border-color: #925dc4;
+   color: #925dc4;
+}
+
+.whatif {
+   border-color: #e262cd;
+   color: #e262cd;
+}
+
+/*corrupcion*/
+.corruption-bar {
+    width: 80%;
+    height: 10px;
+    background-color: #b7acb9;
+    border-radius: 10px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.corruption-bar-fill {
+    height: 100%;
+    background-color: #925dc4;
+    border-radius: 10px 0 0 10px;
+ }
+
+/*what if*/
+.whatif-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #3f3942;
+    border-radius: 12px;
+    width: 270px;
+    cursor: pointer;
+}
+
+.whatif-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.whatif-description{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.whatif-img {
+    width: 50%;;
+    height: auto;
+    border-radius: 8px;
+    padding-left: 40px;
+}
+
+.whatif-section img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}

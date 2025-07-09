@@ -35,6 +35,14 @@ const moverMedium = (idMedium, idUbicacion) => axios.put(`${server}medium/${idMe
 // estadistica
 const getSantuarioMasCorrupto = () => axios.get(`${server}estadistica/santuarioCorrupto`)
 
+//realidades
+const getRealidades = () => axios.get(`${server}realidadParalela`)
+const getRealidadById = (id) => axios.get(`${server}realidadParalela/${id}`)
+const getLineaTemporal = (id) => axios.get(`${server}realidadParalela/${id}/lineaTemporal`)
+const getCorrupcion = (id) => axios.get(`${server}realidadParalela/${id}/corrupcion`)
+const simularDominacion = (idRealidad, dominanteId, dominadoId) => axios.put(`${server}realidadParalela/${idRealidad}/simularDominar/${dominanteId}/${dominadoId}`)
+
+
 export default {
     // ubicacion
     getUbicacionById,
@@ -67,5 +75,12 @@ export default {
     moverMedium,
 
     // estadistica
-    getSantuarioMasCorrupto
+    getSantuarioMasCorrupto,
+
+    //realidades
+    getRealidades,
+    getRealidadById,
+    getLineaTemporal,
+    getCorrupcion,
+    simularDominacion
 }

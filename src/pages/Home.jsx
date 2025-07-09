@@ -21,6 +21,7 @@ const Home = () => {
          <button onClick={() => goToPage("espiritus")}>Espiritus</button>
          <button onClick={() => goToPage("mediums")}>Mediums</button>
          <button onClick={handleMusicAndGo}>Conoce nuestros demonios</button>
+         <button onClick={() => goToPage("realidadesParalelas")}> Realidades </button>
       </div>
    );
 };
