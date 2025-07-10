@@ -1,43 +1,42 @@
-.medium-nombre{
-    color:rgb(255, 255, 255)
+.medium-nombre {
+  color: rgb(255, 255, 255);
 }
 
-.medium-bottom{
-    color:rgb(238, 231, 231)
+.medium-bottom {
+  color: rgb(238, 231, 231);
 }
 
-.choose-medium-card{
-   background-color: #3f3942;;
-   border-radius: 20px;
+.choose-medium-card {
+  background-color: #3f3942;
+  border-radius: 20px;
 }
 
-.selectedCard{
-   background-color: #6c4781;
-   scale: 1.05;
-   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
+.selectedCard {
+  background-color: #6c4781;
+  scale: 1.05;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
 }
 
 .choose-medium-img {
-   width: 250px;
-   height: 250px;
-   background-color: white;
-   border-radius: 20px 20px 0px 0px;
-   margin: 0;
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  border-radius: 20px 20px 0px 0px;
+  margin: 0;
 }
 
 .choose-medium-nombre {
-   text-align: center;
-   margin: 10px 0px 0px 0px;
-   padding: 0;
-
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+  padding: 0;
 }
 
 .choose-medium-mana {
-   text-align: center;
-   margin: 0px 0px 25px 0px;
+  text-align: center;
+  margin: 0px 0px 25px 0px;
 }
 
-.choose-medium-espiritus{
-    text-align: center;
-   margin: 0px 0px 25px 0px;
+.choose-medium-espiritus {
+  text-align: center;
+  margin: 0px 0px 25px 0px;
 }

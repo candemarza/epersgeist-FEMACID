@@ -1,48 +1,175 @@
-.Angelical-top{
-    color:rgb(20, 20, 20)
+.Angelical-top {
+  color: #f8f8ff;
+  text-shadow: 0 0 6px rgba(173, 216, 230, 0.8),
+    0 0 12px rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  font-size: 2.5rem;
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
 
-.Angelical-bottom{
-    color:rgb(20, 20, 20)
+.Angelical-bottom {
+  color: #e6e6fa;
+  text-shadow: 0 0 4px rgba(173, 216, 230, 0.6),
+    0 0 8px rgba(255, 255, 255, 0.3);
+  padding: 4px 12px;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
 
-.Demoniaco-top{
-     /*ver de ponerle una shadow? o buscar otra foto*/
-    color:rgb(238, 231, 231)
+.Demoniaco-top {
+  font-family: "Rubik Glitch", cursive;
+  letter-spacing: 1px;
+  font-weight: 100 !important;
+  color: #ff6666 !important;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  -webkit-text-stroke: 0.8px rgb(70, 0, 0) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), 0 0 5px rgba(255, 0, 0, 0.4) !important;
+  padding: 4px 12px;
+  border-radius: 6px;
 }
 
-.Demoniaco-bottom{
-     /*same^^*/
-    color:rgb(238, 231, 231)
+.Demoniaco-bottom {
+  font-family: "Rubik Glitch", cursive;
+  font-weight: 300 !important;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  color: #f1baba;
+  -webkit-text-stroke: 0.5px rgb(70, 0, 0) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  padding: 4px 12px;
+  border-radius: 4px;
 }
 
-.choose-espiritu-card{
-    background-color: #3f3942;
-    border-radius: 20px;
+.choose-espiritu-card {
+  background-color: #3f3942;
+  border-radius: 20px;
 }
 
-.selectedCard{
-   background-color: #6c4781;
-   scale: 1.05;
-   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
+.selectedCard {
+  background-color: #6c4781;
+  scale: 1.05;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
 }
 
 .choose-espiritu-img {
-   width: 250px;
-   height: 250px;
-   background-color: white;
-   border-radius: 20px 20px 0px 0px;
-   margin: 0;
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  border-radius: 20px 20px 0px 0px;
+  margin: 0;
 }
 
 .choose-espiritu-nombre {
-   text-align: center;
-   margin: 10px 0px 0px 0px;
-   padding: 0;
-
+  text-align: center;
+  margin: 10px 0px 0px 0px;
+  padding: 0;
 }
 
 .choose-espiritu-tipo {
-   text-align: center;
-   margin: 0px 0px 25px 0px;
+  text-align: center;
+  margin: 0px 0px 25px 0px;
+}
+
+.espiritu-buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.espiritu-buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Botón base */
+.card-button {
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 2px solid transparent !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background-color: #6c5781;
+  color: #f0eaff;
+  box-shadow: 0 4px 8px rgba(90, 72, 116, 0.3);
+}
+
+/* Hover base */
+.card-button:hover {
+  background-color: #7e6ca7;
+  box-shadow: 0 6px 14px rgba(108, 87, 129, 0.5);
+  transform: scale(1.05);
+}
+
+/* --- Angelical --- */
+.Angelical-button {
+  background: linear-gradient(45deg, #a9c9ff, #80bfff);
+  color: #1a2a6c;
+  border-color: #5481d1;
+  text-shadow: 0 0 5px #a9c9ff, 0 0 10px #80bfff;
+  box-shadow: 0 0 10px #80bfff, 0 0 20px #a9c9ff;
+}
+
+.Angelical-button:hover {
+  background: linear-gradient(45deg, #80bfff, #a9c9ff);
+  box-shadow: 0 0 15px #a9c9ff, 0 0 30px #80bfff;
+  color: #12204a;
+  transform: scale(1.08);
+}
+
+/* --- Demoniaco (Glitch effect) --- */
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 0 red, -1px 0 cyan;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: 2px 0 red, -2px 0 cyan;
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    text-shadow: 1px 0 red, -1px 0 cyan;
+    transform: translate(1px, -1px);
+  }
+  60% {
+    text-shadow: 2px 0 red, -2px 0 cyan;
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    text-shadow: 1px 0 red, -1px 0 cyan;
+    transform: translate(1px, 1px);
+  }
+  100% {
+    text-shadow: 1px 0 red, -1px 0 cyan;
+    transform: translate(0);
+  }
+}
+
+.Demoniaco-button {
+  background: linear-gradient(45deg, #6b0000, #a60000);
+  color: #ff6666;
+  border-color: #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #a60000;
+  animation: glitch 1.5s infinite;
+}
+
+.Demoniaco-button:hover {
+  background: linear-gradient(45deg, #a60000, #ff0000);
+  box-shadow: 0 0 20px #ff0000, 0 0 40px #a60000;
+  color: #ff9999;
+  animation: glitch 1s infinite;
+  transform: scale(1.1);
 }

@@ -11,46 +11,52 @@ import InvocarEspiritu from "./pages/InvocarEspiritu";
 import Exorcizar from "./pages/Exorcizar";
 import Realidades from "./pages/Realidades";
 import Realidad from "./pages/Realidad";
+import Fog from "./components/Fog";
 
 function App() {
-   const audioRef = useRef(null);
+  const audioRef = useRef(null);
 
-   return (
-      <>
-         <audio ref={audioRef} src={music} loop />
-         <Routes>
-            <Route element={<Outlet context={{ audioRef }} />}>
-               <Route path="/" element={<Home />} />
-               <Route path="/demonios" element={<Demonios />} />
-            </Route>
+  return (
+    <>
+      <audio ref={audioRef} src={music} loop />
 
-            <Route path="/ubicaciones" element={<Outlet />}>
-               <Route index element={<Ubicaciones />} />
-               <Route path=":id" element={<Ubicaciones />} />
-            </Route>
+      <Fog />
 
-            <Route path="/realidadesParalelas" element={<Outlet />}>
-               <Route index element={<Realidades />} />
-               <Route path=":id" element={<Realidad />} />
-            </Route>
+      <div className="content-wrapper">
+        <Routes>
+          <Route element={<Outlet context={{ audioRef }} />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/demonios" element={<Demonios />} />
+          </Route>
 
-            <Route path="/espiritus" element={<Outlet />}>
-               <Route index element={<Espiritus />} />
-               <Route path=":id" element={<Espiritus />} />
-               <Route path=":id/conectarAMedium" element={<ConectarAMedium />} />
-            </Route>
+          <Route path="/ubicaciones" element={<Outlet />}>
+            <Route index element={<Ubicaciones />} />
+            <Route path=":id" element={<Ubicaciones />} />
+          </Route>
 
-            <Route path="/mediums" element={<Outlet />}>
-               <Route index element={<Mediums />} />
-               <Route path=":id" element={<Mediums />} />
-               <Route path=":id/invocarEspiritu" element={<InvocarEspiritu />} />
-               <Route path=":id/exorcizar" element={<Exorcizar />} />
-            </Route>
+          <Route path="/realidadesParalelas" element={<Outlet />}>
+            <Route index element={<Realidades />} />
+            <Route path=":id" element={<Realidad />} />
+          </Route>
 
-            <Route path="*" element={<h1>404 Page Not Found</h1>} />
-         </Routes>
-      </>
-   );
+          <Route path="/espiritus" element={<Outlet />}>
+            <Route index element={<Espiritus />} />
+            <Route path=":id" element={<Espiritus />} />
+            <Route path=":id/conectarAMedium" element={<ConectarAMedium />} />
+          </Route>
+
+          <Route path="/mediums" element={<Outlet />}>
+            <Route index element={<Mediums />} />
+            <Route path=":id" element={<Mediums />} />
+            <Route path=":id/invocarEspiritu" element={<InvocarEspiritu />} />
+            <Route path=":id/exorcizar" element={<Exorcizar />} />
+          </Route>
+
+          <Route path="*" element={<h1>404 Page Not Found</h1>} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 
 export default App;

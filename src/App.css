@@ -4,3 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
+
+@font-face {
+  font-family: "Peanut_Butter";
+  src: url("./assets/fonts/Peanut_Butter.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
